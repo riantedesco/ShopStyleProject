@@ -49,7 +49,7 @@ public class CustomerFormDto {
     @ApiModelProperty(value = "Email")
     @NotNull
     @Email(message = "Invalid email")
-    @UniqueElements
+//    @UniqueElements
     private String email;
 
     @ApiModelProperty(value = "Senha")
@@ -59,6 +59,6 @@ public class CustomerFormDto {
 
     @ApiModelProperty(value = "Status (ativo ou inativo)")
     @NotNull
-    private Double active;
+    private Boolean active;
 
 }

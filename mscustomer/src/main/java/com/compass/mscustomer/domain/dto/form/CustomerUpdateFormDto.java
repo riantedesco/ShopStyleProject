@@ -54,6 +54,6 @@ public class CustomerUpdateFormDto {
 
     @ApiModelProperty(value = "Status (ativo ou inativo)")
     @NotNull
-    private Double active;
+    private Boolean active;
 
 }

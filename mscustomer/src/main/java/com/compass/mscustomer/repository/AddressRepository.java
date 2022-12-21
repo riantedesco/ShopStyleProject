@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface AddressRepository extends JpaRepository<AddressEntity, Long> {
 
-    @Query("SELECT a FROM AddressEntity a WHERE a.customer_id = :customerId")
+    @Query("SELECT a FROM AddressEntity a WHERE a.customer = :customerId")
     List<AddressEntity> findByCustomerId(Long customerId);
 
 }

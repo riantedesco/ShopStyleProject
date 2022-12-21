@@ -43,7 +43,6 @@ public class AddressEntity {
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
-    @Column(name = "customer_id")
     private CustomerEntity customer;
 
 }

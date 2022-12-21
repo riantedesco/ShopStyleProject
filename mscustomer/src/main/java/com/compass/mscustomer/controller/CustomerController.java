@@ -1,6 +1,7 @@
 package com.compass.mscustomer.controller;
 
 import com.compass.mscustomer.domain.dto.CustomerDto;
+import com.compass.mscustomer.domain.dto.CustomerUpdateDto;
 import com.compass.mscustomer.domain.dto.form.CustomerFormDto;
 import com.compass.mscustomer.domain.dto.form.CustomerPasswordUpdateFormDto;
 import com.compass.mscustomer.domain.dto.form.CustomerUpdateFormDto;
@@ -48,7 +49,7 @@ public class CustomerController {
 			@ApiResponse(code = 404, message = "Cliente não encontrado")})
 	@PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
 	@Transactional
-	public ResponseEntity<CustomerDto> update(@ApiParam(value = "Id do cliente", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid CustomerUpdateFormDto body) {
+	public ResponseEntity<CustomerUpdateDto> update(@ApiParam(value = "Id do cliente", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid CustomerUpdateFormDto body) {
 		return ResponseEntity.ok(this.customerService.update(id, body));
 	}
 
@@ -59,7 +60,7 @@ public class CustomerController {
 			@ApiResponse(code = 404, message = "Cliente não encontrado")})
 	@PutMapping(value = "/{id}/password", consumes = "application/json", produces = "application/json")
 	@Transactional
-	public ResponseEntity<CustomerDto> updatePassword(@ApiParam(value = "Id do cliente", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid CustomerPasswordUpdateFormDto body) {
+	public ResponseEntity<CustomerUpdateDto> updatePassword(@ApiParam(value = "Id do cliente", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid CustomerPasswordUpdateFormDto body) {
 		return ResponseEntity.ok(this.customerService.updatePassword(id, body));
 	}
 

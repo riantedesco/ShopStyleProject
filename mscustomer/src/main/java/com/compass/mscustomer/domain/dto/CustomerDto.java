@@ -42,7 +42,7 @@ public class CustomerDto {
     private String password;
 
     @ApiModelProperty(value = "Status (ativo ou inativo)")
-    private Double active;
+    private Boolean active;
 
     @ApiModelProperty(value = "Endereços do cliente")
     private List<AddressDto> addresses;

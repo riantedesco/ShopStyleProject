@@ -1,15 +1,15 @@
 package com.compass.mscustomer.util.converter;
 
 import com.compass.mscustomer.exception.NotFoundAttributeException;
-import com.compass.mscustomer.util.constants.StateCityOption;
+import com.compass.mscustomer.util.constants.StateAddressOption;
 import org.springframework.core.convert.converter.Converter;
 
-public class StateCityOptionConverter implements Converter<String, StateCityOption> {
+public class StateAddressOptionConverter implements Converter<String, StateAddressOption> {
 
     @Override
-    public StateCityOption convert(String state) {
+    public StateAddressOption convert(String state) {
         try {
-            return StateCityOption.valueOf(state.toUpperCase());
+            return StateAddressOption.valueOf(state.toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new NotFoundAttributeException("No cities found");
         }

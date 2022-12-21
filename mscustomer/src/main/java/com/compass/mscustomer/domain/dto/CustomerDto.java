@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -16,22 +17,33 @@ import java.time.LocalDate;
 @ApiModel(value = "Retorno dos dados do cliente")
 public class CustomerDto {
 
-    @ApiModelProperty(value = "Id do cliente")
+    @ApiModelProperty(value = "Id")
     private Long id;
 
-    @ApiModelProperty(value = "Nome do cliente")
-    private String name;
+    @ApiModelProperty(value = "Cpf")
+    private String cpf;
 
-    @ApiModelProperty(value = "Sexo do cliente")
+    @ApiModelProperty(value = "Nome")
+    private String firstName;
+
+    @ApiModelProperty(value = "Sobrenome")
+    private String lastName;
+
+    @ApiModelProperty(value = "Sexo")
     private String sex;
 
-    @ApiModelProperty(value = "Data de nascimento do cliente")
+    @ApiModelProperty(value = "Data de nascimento")
     private LocalDate birthdate;
 
-    @ApiModelProperty(value = "Idade do cliente")
-    private Integer age;
+    @ApiModelProperty(value = "Email")
+    private String email;
 
-    @ApiModelProperty(value = "Cidade do cliente")
-    private CityDto city;
+    @ApiModelProperty(value = "Senha ")
+    private String password;
 
+    @ApiModelProperty(value = "Status (ativo ou inativo)")
+    private Double active;
+
+    @ApiModelProperty(value = "Endereços do cliente")
+    private List<AddressDto> addresses;
 }

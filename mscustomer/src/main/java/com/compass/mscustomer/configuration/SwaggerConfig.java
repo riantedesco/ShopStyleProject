@@ -85,7 +85,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("API Mscustomer")
-                .description("Documentação do mscustomer do desafio da Droga Raia")
+                .description("Documentação do mscustomer do projeto ShopStyle")
                 .version("1.0.0")
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")

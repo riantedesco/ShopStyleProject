@@ -1,24 +1,24 @@
 package com.compass.mscustomer.fixture;
 
 import com.compass.mscustomer.domain.AddressEntity;
-import com.compass.mscustomer.domain.dto.CityDto;
-import com.compass.mscustomer.domain.dto.form.CityFormDto;
-import com.compass.mscustomer.util.constants.StateCityOption;
+import com.compass.mscustomer.domain.dto.AddressDto;
+import com.compass.mscustomer.domain.dto.form.AddressFormDto;
+import com.compass.mscustomer.util.constants.StateAddressOption;
 
 public class CityFixture {
 
-    public static CityFormDto getCityFormDto() {
-        return CityFormDto.builder()
+    public static AddressFormDto getCityFormDto() {
+        return AddressFormDto.builder()
                 .name("City test")
-                .state(StateCityOption.RIO_GRANDE_DO_SUL)
+                .state(StateAddressOption.RIO_GRANDE_DO_SUL)
                 .build();
     }
 
-    public static CityDto getCityDto() {
-        return CityDto.builder()
+    public static AddressDto getCityDto() {
+        return AddressDto.builder()
                 .id(1L)
                 .name("City test")
-                .state(StateCityOption.RIO_GRANDE_DO_SUL)
+                .state(StateAddressOption.RIO_GRANDE_DO_SUL)
                 .build();
     }
 
@@ -26,14 +26,14 @@ public class CityFixture {
         return AddressEntity.builder()
                 .id(1L)
                 .name("City test")
-                .state(StateCityOption.RIO_GRANDE_DO_SUL)
+                .state(StateAddressOption.RIO_GRANDE_DO_SUL)
                 .build();
     }
 
-    public static CityFormDto getCityFormDtoWithInvalidAttribute() {
-        return CityFormDto.builder()
+    public static AddressFormDto getCityFormDtoWithInvalidAttribute() {
+        return AddressFormDto.builder()
                 .name("A")
-                .state(StateCityOption.RIO_GRANDE_DO_SUL)
+                .state(StateAddressOption.RIO_GRANDE_DO_SUL)
                 .build();
     }
 

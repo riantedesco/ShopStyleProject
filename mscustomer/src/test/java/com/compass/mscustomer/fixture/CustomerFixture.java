@@ -3,10 +3,8 @@ package com.compass.mscustomer.fixture;
 import com.compass.mscustomer.domain.CustomerEntity;
 import com.compass.mscustomer.domain.dto.CustomerDto;
 import com.compass.mscustomer.domain.dto.form.CustomerFormDto;
-import com.compass.mscustomer.domain.dto.form.CustomerUpdateNameFormDto;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class CustomerFixture {
 

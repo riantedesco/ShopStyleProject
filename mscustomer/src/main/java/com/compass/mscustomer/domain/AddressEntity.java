@@ -1,6 +1,6 @@
 package com.compass.mscustomer.domain;
 
-import com.compass.mscustomer.util.constants.StateCityOption;
+import com.compass.mscustomer.util.constants.StateAddressOption;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +21,7 @@ public class AddressEntity {
     private Long id;
 
     @Column(name = "state")
-    private StateCityOption state;
+    private StateAddressOption state;
 
     @Column(name = "city")
     private String city;
@@ -43,7 +43,7 @@ public class AddressEntity {
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
-    @Column(name = "customer")
+    @Column(name = "customer_id")
     private CustomerEntity customer;
 
 }

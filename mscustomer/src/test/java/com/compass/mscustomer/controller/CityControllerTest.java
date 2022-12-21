@@ -1,8 +1,8 @@
 package com.compass.mscustomer.controller;
 
-import com.compass.mscustomer.domain.dto.CityDto;
+import com.compass.mscustomer.domain.dto.AddressDto;
 import com.compass.mscustomer.fixture.CityFixture;
-import com.compass.mscustomer.service.CityService;
+import com.compass.mscustomer.service.AddressService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +21,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 public class CityControllerTest {
 
     @Autowired
-    private CityService cityService;
+    private AddressService cityService;
 
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -55,7 +55,7 @@ public class CityControllerTest {
 
     @Test
     public void findByName_WhenSendFindByNameWithExistingName_ExpectedStatus200() {
-        CityDto citySaved = cityService.save(CityFixture.getCityFormDto());
+        AddressDto citySaved = cityService.save(CityFixture.getCityFormDto());
 
         given()
                 .when()
@@ -73,7 +73,7 @@ public class CityControllerTest {
 
     @Test
     public void findByState_WhenSendFindByStateWithExistingState_ExpectedStatus200() {
-        CityDto citySaved = cityService.save(CityFixture.getCityFormDto());
+        AddressDto citySaved = cityService.save(CityFixture.getCityFormDto());
 
         given()
                 .when()

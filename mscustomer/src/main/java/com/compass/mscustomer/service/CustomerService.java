@@ -2,9 +2,8 @@ package com.compass.mscustomer.service;
 
 import com.compass.mscustomer.domain.dto.CustomerDto;
 import com.compass.mscustomer.domain.dto.form.CustomerFormDto;
-import com.compass.mscustomer.domain.dto.form.CustomerUpdateNameFormDto;
-
-import java.util.List;
+import com.compass.mscustomer.domain.dto.form.CustomerPasswordUpdateFormDto;
+import com.compass.mscustomer.domain.dto.form.CustomerUpdateFormDto;
 
 public interface CustomerService {
 
@@ -12,10 +11,8 @@ public interface CustomerService {
 
     CustomerDto find(Long id);
 
-    List<CustomerDto> findByName(String name);
+    CustomerDto update(Long id, CustomerUpdateFormDto body);
 
-    CustomerDto updateName(Long id, CustomerUpdateNameFormDto body);
-
-    void delete(Long id);
+    CustomerDto updatePassword(Long id, CustomerPasswordUpdateFormDto body);
 
 }

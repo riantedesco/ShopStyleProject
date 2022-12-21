@@ -1,14 +1,12 @@
 package com.compass.mscustomer.domain;
 
+import com.compass.mscustomer.util.constants.SexCustomerOption;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.UniqueElements;
-import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.time.LocalDate;
 
 @Entity
@@ -23,7 +21,6 @@ public class CustomerEntity {
     @Column(name = "id")
     private Long id;
 
-    @CPF(message = "Invalid cpf")
     @Column(name = "cpf")
     private String cpf;
 
@@ -33,14 +30,12 @@ public class CustomerEntity {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "cpf")
-    private String sex;
+    @Column(name = "sex")
+    private SexCustomerOption sex;
 
     @Column(name = "birthdate")
     private LocalDate birthdate;
 
-    @Email(message = "Invalid email")
-    @UniqueElements
     @Column(name = "email")
     private String email;
 

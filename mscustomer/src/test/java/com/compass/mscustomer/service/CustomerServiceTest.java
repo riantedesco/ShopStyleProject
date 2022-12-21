@@ -6,7 +6,7 @@ import com.compass.mscustomer.exception.InvalidAttributeException;
 import com.compass.mscustomer.exception.NotFoundAttributeException;
 import com.compass.mscustomer.fixture.CityFixture;
 import com.compass.mscustomer.fixture.CustomerFixture;
-import com.compass.mscustomer.repository.CityRepository;
+import com.compass.mscustomer.repository.AddressRepository;
 import com.compass.mscustomer.repository.CustomerRepository;
 import com.compass.mscustomer.service.impl.CustomerServiceImpl;
 import com.compass.mscustomer.util.validation.Validation;
@@ -35,7 +35,7 @@ public class CustomerServiceTest {
     private CustomerRepository customerRepository;
 
     @Mock
-    private CityRepository cityRepository;
+    private AddressRepository cityRepository;
 
     @Spy
     private ModelMapper mapper;

@@ -1,13 +1,14 @@
 package com.compass.mscustomer.service.impl;
 
-import com.compass.mscustomer.domain.AddressEntity;
 import com.compass.mscustomer.domain.CustomerEntity;
+import com.compass.mscustomer.domain.dto.AddressDto;
 import com.compass.mscustomer.domain.dto.CustomerDto;
 import com.compass.mscustomer.domain.dto.form.CustomerFormDto;
-import com.compass.mscustomer.domain.dto.form.CustomerUpdateNameFormDto;
+import com.compass.mscustomer.domain.dto.form.CustomerPasswordUpdateFormDto;
+import com.compass.mscustomer.domain.dto.form.CustomerUpdateFormDto;
 import com.compass.mscustomer.exception.InvalidAttributeException;
 import com.compass.mscustomer.exception.NotFoundAttributeException;
-import com.compass.mscustomer.repository.CityRepository;
+import com.compass.mscustomer.repository.AddressRepository;
 import com.compass.mscustomer.repository.CustomerRepository;
 import com.compass.mscustomer.service.CustomerService;
 import com.compass.mscustomer.util.validation.Validation;
@@ -26,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
 	private CustomerRepository customerRepository;
 
 	@Autowired
-	private CityRepository cityRepository;
+	private AddressRepository addressRepository;
 
 	@Autowired
 	private ModelMapper mapper;
@@ -38,16 +39,6 @@ public class CustomerServiceImpl implements CustomerService {
 	public CustomerDto save(CustomerFormDto body) {
 		mapper.getConfiguration().setAmbiguityIgnored(true);
 		CustomerEntity customer = mapper.map(body, CustomerEntity.class);
-		customer.setId(null);
-
-		if (body.getIdCity() != null) {
-			Optional<AddressEntity> city = this.cityRepository.findById(body.getIdCity());
-			if(!city.isPresent()) {
-				throw new InvalidAttributeException("City not found");
-			}
-			customer.setCity(city.get());
-		}
-
 		validation.validateSaveCustomer(customer);
 		CustomerEntity response = this.customerRepository.save(customer);
 		return mapper.map(response, CustomerDto.class);
@@ -58,27 +49,32 @@ public class CustomerServiceImpl implements CustomerService {
 		Optional<CustomerEntity> customer = this.customerRepository.findById(id);
 		if (!customer.isPresent()) {
 			throw new NotFoundAttributeException("Customer not found");
+		} else {
+			List<AddressDto> addresses = this.addressRepository.findByCustomerId(id).stream().map(a -> mapper.map(a, AddressDto.class))
+					.collect(Collectors.toList());;
+			if (!addresses.isEmpty()) {
+				CustomerDto customerDtoResponse = mapper.map(customer, CustomerDto.class);
+				customerDtoResponse.setAddresses(addresses);
+				return mapper.map(customerDtoResponse, CustomerDto.class);
+			} else {
+				return mapper.map(customer, CustomerDto.class);
+			}
 		}
-		return mapper.map(customer.get(), CustomerDto.class);
 	}
 
 	@Override
-	public List<CustomerDto> findByName(String name) {
-		List<CustomerDto> customers = this.customerRepository.findByName(name).stream().map(c -> mapper.map(c, CustomerDto.class))
-				.collect(Collectors.toList());
-		if (customers.isEmpty()) {
-			throw new NotFoundAttributeException("No customers found");
-		}
-		return customers;
-	}
-
-	@Override
-	public CustomerDto updateName(Long id, CustomerUpdateNameFormDto body) {
+	public CustomerDto update(Long id, CustomerUpdateFormDto body) {
 		Optional<CustomerEntity> customer = this.customerRepository.findById(id);
 		if (!customer.isPresent()) {
 			throw new NotFoundAttributeException("Customer not found");
 		}
-		customer.get().setName(body.getName());
+		customer.get().setCpf(body.getCpf());
+		customer.get().setFirstName(body.getFirstName());
+		customer.get().setLastName(body.getLastName());
+		customer.get().setSex(body.getSex());
+		customer.get().setBirthdate(body.getBirthdate());
+		customer.get().setEmail(body.getEmail());
+		customer.get().setActive(body.getActive());
 
 		validation.validateUpdateCustomer(customer.get());
 		CustomerEntity response = this.customerRepository.save(customer.get());
@@ -86,12 +82,22 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public void delete(Long id) {
+	public CustomerDto updatePassword(Long id, CustomerPasswordUpdateFormDto body) {
 		Optional<CustomerEntity> customer = this.customerRepository.findById(id);
 		if (!customer.isPresent()) {
 			throw new NotFoundAttributeException("Customer not found");
+		} else {
+			if (!body.getNewPassword().equals(body.getConfirmNewPassword())) {
+				throw new InvalidAttributeException("Passwords don't match");
+			}
+			customer.get().setPassword(body.getNewPassword());
 		}
-		this.customerRepository.deleteById(id);
+
+		validation.validatePasswordUpdateCustomer(customer.get());
+		CustomerEntity response = this.customerRepository.save(customer.get());
+		return mapper.map(response, CustomerDto.class);
 	}
+
+
 
 }

@@ -19,8 +19,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ApiModel(value = "Envio dos dados do cliente")
-public class CustomerFormDto {
+@ApiModel(value = "Envio dos dados de atualização do cliente")
+public class CustomerUpdateFormDto {
 
     @ApiModelProperty(value = "Cpf")
     @NotNull
@@ -51,11 +51,6 @@ public class CustomerFormDto {
     @Email(message = "Invalid email")
     @UniqueElements
     private String email;
-
-    @ApiModelProperty(value = "Senha")
-    @NotNull
-    @Size(min = 6, message = "Password must contain at least 6 characters")
-    private String password;
 
     @ApiModelProperty(value = "Status (ativo ou inativo)")
     @NotNull

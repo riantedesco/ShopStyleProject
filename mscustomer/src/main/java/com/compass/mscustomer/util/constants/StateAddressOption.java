@@ -1,6 +1,7 @@
 package com.compass.mscustomer.util.constants;
 
-public enum StateCityOption {
+public enum StateAddressOption {
+
     ACRE("Acre"),
     ALAGOAS("Alagoas"),
     AMAPA("Amapá"),
@@ -29,9 +30,9 @@ public enum StateCityOption {
     SERGIPE("Sergipe"),
     TOCANTINS("Tocantins");
 
-    public final String stateName;
+    public final String state;
 
-    private StateCityOption(String stateName) {
-        this.stateName = stateName;
+    private StateAddressOption(String state) {
+        this.state = state;
     }
 }

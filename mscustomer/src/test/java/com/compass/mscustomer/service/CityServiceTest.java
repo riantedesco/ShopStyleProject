@@ -1,11 +1,11 @@
 package com.compass.mscustomer.service;
 
 import com.compass.mscustomer.domain.AddressEntity;
-import com.compass.mscustomer.domain.dto.CityDto;
+import com.compass.mscustomer.domain.dto.AddressDto;
 import com.compass.mscustomer.exception.NotFoundAttributeException;
 import com.compass.mscustomer.fixture.CityFixture;
-import com.compass.mscustomer.repository.CityRepository;
-import com.compass.mscustomer.service.impl.CityServiceImpl;
+import com.compass.mscustomer.repository.AddressRepository;
+import com.compass.mscustomer.service.impl.AddressServiceImpl;
 import com.compass.mscustomer.util.validation.Validation;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,7 +28,7 @@ import static org.mockito.Mockito.*;
 public class CityServiceTest {
 
     @Mock
-    private CityRepository cityRepository;
+    private AddressRepository cityRepository;
 
     @Spy
     private ModelMapper mapper;
@@ -37,7 +37,7 @@ public class CityServiceTest {
     private Validation validation;
 
     @InjectMocks
-    private CityServiceImpl cityService;
+    private AddressServiceImpl cityService;
 
     @BeforeEach
     public void setup(){
@@ -47,7 +47,7 @@ public class CityServiceTest {
     @Test
     void save_WhenSendSave_ExpectedCity ()  {
         when(cityRepository.save(any(AddressEntity.class))).thenReturn(CityFixture.getCityEntity());
-        CityDto response = cityService.save(CityFixture.getCityFormDto());
+        AddressDto response = cityService.save(CityFixture.getCityFormDto());
 
         verify(cityRepository, times(1)).save(any(AddressEntity.class));
         assertEquals(response.getId(), CityFixture.getCityDto().getId());
@@ -57,7 +57,7 @@ public class CityServiceTest {
     @Test
     void findByName_WhenSendFindByNameWithExistingName_ExpectedCity ()  {
         when(cityRepository.findByName(anyString())).thenReturn(List.of(CityFixture.getCityEntity()));
-        List<CityDto> response = cityService.findByName(CityFixture.getCityDto().getName());
+        List<AddressDto> response = cityService.findByName(CityFixture.getCityDto().getName());
 
         assertFalse(response.isEmpty());
     }
@@ -73,7 +73,7 @@ public class CityServiceTest {
     @Test
     void findByState_WhenSendFindByStateWithExistingState_ExpectedCity ()  {
         when(cityRepository.findByState(any())).thenReturn(List.of(CityFixture.getCityEntity()));
-        List<CityDto> response = cityService.findByState(CityFixture.getCityDto().getState());
+        List<AddressDto> response = cityService.findByState(CityFixture.getCityDto().getState());
 
         assertFalse(response.isEmpty());
     }

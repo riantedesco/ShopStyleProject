@@ -8,12 +8,12 @@ import com.compass.mscustomer.domain.dto.form.CustomerUpdateFormDto;
 
 public interface CustomerService {
 
-    CustomerDto save(CustomerFormDto body);
+    void save(CustomerFormDto body);
 
     CustomerDto find(Long id);
 
-    CustomerUpdateDto update(Long id, CustomerUpdateFormDto body);
+    void update(Long id, CustomerUpdateFormDto body);
 
-    CustomerUpdateDto updatePassword(Long id, CustomerPasswordUpdateFormDto body);
+    void updatePassword(Long id, CustomerPasswordUpdateFormDto body);
 
 }

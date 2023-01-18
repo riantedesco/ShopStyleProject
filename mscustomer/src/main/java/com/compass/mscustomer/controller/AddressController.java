@@ -50,6 +50,6 @@ public class AddressController {
 	@Transactional
 	public ResponseEntity<?> delete(@ApiParam(value = "Id do endereço", required = true, example = "1") @PathVariable Long id) {
 		this.addressService.delete(id);
-		return ResponseEntity.noContent().build();
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 }

@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -38,13 +40,12 @@ public class CustomerServiceImpl implements CustomerService {
 	private Validation validation;
 
 	@Override
-	public CustomerDto save(CustomerFormDto body) {
+	public void save(CustomerFormDto body) {
 		mapper.getConfiguration().setAmbiguityIgnored(true);
 		CustomerEntity customer = mapper.map(body, CustomerEntity.class);
 		validation.validateSaveCustomer(customer);
 		customer.setPassword(new BCryptPasswordEncoder().encode(body.getPassword()));
-		CustomerEntity response = this.customerRepository.save(customer);
-		return mapper.map(response, CustomerDto.class);
+		this.customerRepository.save(customer);
 	}
 
 	@Override
@@ -53,20 +54,21 @@ public class CustomerServiceImpl implements CustomerService {
 		if (!customer.isPresent()) {
 			throw new NotFoundAttributeException("Customer not found");
 		} else {
+			CustomerDto customerDtoResponse = mapper.map(customer.get(), CustomerDto.class);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			String formattedDate = customer.get().getBirthdate().format(formatter);
+			customerDtoResponse.setBirthdate(formattedDate);
 			List<AddressDto> addresses = this.addressRepository.findByCustomerId(id).stream().map(a -> mapper.map(a, AddressDto.class))
-					.collect(Collectors.toList());;
+					.collect(Collectors.toList());
 			if (!addresses.isEmpty()) {
-				CustomerDto customerDtoResponse = mapper.map(customer, CustomerDto.class);
 				customerDtoResponse.setAddresses(addresses);
-				return mapper.map(customerDtoResponse, CustomerDto.class);
-			} else {
-				return mapper.map(customer, CustomerDto.class);
 			}
+			return customerDtoResponse;
 		}
 	}
 
 	@Override
-	public CustomerUpdateDto update(Long id, CustomerUpdateFormDto body) {
+	public void update(Long id, CustomerUpdateFormDto body) {
 		Optional<CustomerEntity> customer = this.customerRepository.findById(id);
 		if (!customer.isPresent()) {
 			throw new NotFoundAttributeException("Customer not found");
@@ -79,12 +81,11 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.get().setEmail(body.getEmail());
 		customer.get().setActive(body.getActive());
 		validation.validateUpdateCustomer(customer.get());
-		CustomerEntity response = this.customerRepository.save(customer.get());
-		return mapper.map(response, CustomerUpdateDto.class);
+		this.customerRepository.save(customer.get());
 	}
 
 	@Override
-	public CustomerUpdateDto updatePassword(Long id, CustomerPasswordUpdateFormDto body) {
+	public void updatePassword(Long id, CustomerPasswordUpdateFormDto body) {
 		Optional<CustomerEntity> customer = this.customerRepository.findById(id);
 		if (!customer.isPresent()) {
 			throw new NotFoundAttributeException("Customer not found");
@@ -95,8 +96,7 @@ public class CustomerServiceImpl implements CustomerService {
 			validation.validatePasswordUpdateCustomer(customer.get());
 			customer.get().setPassword(new BCryptPasswordEncoder().encode(body.getNewPassword()));
 		}
-		CustomerEntity response = this.customerRepository.save(customer.get());
-		return mapper.map(response, CustomerUpdateDto.class);
+		this.customerRepository.save(customer.get());
 	}
 
 }

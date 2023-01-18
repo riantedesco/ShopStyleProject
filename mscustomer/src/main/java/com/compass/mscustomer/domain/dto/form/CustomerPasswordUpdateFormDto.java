@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ApiModel(value = "Envio dos dados de alteração de senha do cliente")
+@ApiModel(value = "Envio dos dados de atualização de senha do cliente")
 public class CustomerPasswordUpdateFormDto {
 
     @ApiModelProperty(value = "Nova senha")

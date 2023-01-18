@@ -33,7 +33,7 @@ public class CustomerDto {
     private String sex;
 
     @ApiModelProperty(value = "Data de nascimento")
-    private LocalDate birthdate;
+    private String birthdate;
 
     @ApiModelProperty(value = "Email")
     private String email;

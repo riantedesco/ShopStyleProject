@@ -29,8 +29,9 @@ public class CustomerController {
 			@ApiResponse(code = 400, message = "Erro na validação dos dados enviados no corpo da requisição")})
 	@PostMapping(consumes = "application/json", produces = "application/json")
 	@Transactional
-	public ResponseEntity<CustomerDto> save(@RequestBody @Valid CustomerFormDto body) {
-		return new ResponseEntity<>(this.customerService.save(body), HttpStatus.CREATED);
+	public ResponseEntity<?> save(@RequestBody @Valid CustomerFormDto body) {
+		this.customerService.save(body);
+		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
 	@ApiOperation(value = "Busca um cliente pelo id")
@@ -49,8 +50,9 @@ public class CustomerController {
 			@ApiResponse(code = 404, message = "Cliente não encontrado")})
 	@PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
 	@Transactional
-	public ResponseEntity<CustomerUpdateDto> update(@ApiParam(value = "Id do cliente", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid CustomerUpdateFormDto body) {
-		return ResponseEntity.ok(this.customerService.update(id, body));
+	public ResponseEntity<?> update(@ApiParam(value = "Id do cliente", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid CustomerUpdateFormDto body) {
+		this.customerService.update(id, body);
+		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 
 	@ApiOperation(value = "Atualiza a senha de um cliente pelo id")
@@ -60,8 +62,9 @@ public class CustomerController {
 			@ApiResponse(code = 404, message = "Cliente não encontrado")})
 	@PutMapping(value = "/{id}/password", consumes = "application/json", produces = "application/json")
 	@Transactional
-	public ResponseEntity<CustomerUpdateDto> updatePassword(@ApiParam(value = "Id do cliente", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid CustomerPasswordUpdateFormDto body) {
-		return ResponseEntity.ok(this.customerService.updatePassword(id, body));
+	public ResponseEntity<?> updatePassword(@ApiParam(value = "Id do cliente", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid CustomerPasswordUpdateFormDto body) {
+		this.customerService.updatePassword(id, body);
+		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 
 }

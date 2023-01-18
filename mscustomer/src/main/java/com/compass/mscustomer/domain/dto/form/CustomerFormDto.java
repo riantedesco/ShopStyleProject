@@ -49,7 +49,6 @@ public class CustomerFormDto {
     @ApiModelProperty(value = "Email")
     @NotNull
     @Email(message = "Invalid email")
-//    @UniqueElements
     private String email;
 
     @ApiModelProperty(value = "Senha")

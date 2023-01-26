@@ -6,9 +6,9 @@ import com.compass.mscustomer.domain.dto.form.AddressUpdateFormDto;
 
 public interface AddressService {
 
-    AddressDto save(AddressFormDto body);
+    void save(AddressFormDto body);
 
-    AddressDto update(Long id, AddressUpdateFormDto body);
+    void update(Long id, AddressUpdateFormDto body);
 
     void delete(Long id);
 

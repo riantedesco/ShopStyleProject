@@ -13,20 +13,13 @@ import java.util.List;
 @Service
 public class CustomerSaveValidation {
 
-//	public void validateSex (CustomerEntity client) {
+//	public void validateSex (CustomerEntity customer) {
 //		String masculino = "Masculino";
 //		String feminino = "Feminino";
 //		List<String> list = Arrays.asList(masculino, feminino);
-//		if (!list.contains(client.getSex())) {
+//		if (!list.contains(customer.getSex())) {
 //			throw new InvalidAttributeException("Invalid sex");
 //		}
 //	}
-
-	public void validateBirthdate (CustomerEntity customer) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		String formattedDate = customer.getBirthdate().format(formatter);
-		LocalDate localDateBirthdate = LocalDate.parse(formattedDate, formatter);
-		customer.setBirthdate(localDateBirthdate);
-	}
 
 }

@@ -27,8 +27,9 @@ public class AddressController {
 			@ApiResponse(code = 400, message = "Erro na validação dos dados enviados no corpo da requisição")})
 	@PostMapping(consumes = "application/json", produces = "application/json")
 	@Transactional
-	public ResponseEntity<AddressDto> save(@RequestBody @Valid AddressFormDto body) {
-		return new ResponseEntity<>(this.addressService.save(body), HttpStatus.CREATED);
+	public ResponseEntity<?> save(@RequestBody @Valid AddressFormDto body) {
+		this.addressService.save(body);
+		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
 	@ApiOperation(value = "Atualiza um endereço pelo id")
@@ -38,8 +39,9 @@ public class AddressController {
 			@ApiResponse(code = 404, message = "Endereço não encontrado")})
 	@PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
 	@Transactional
-	public ResponseEntity<AddressDto> update(@ApiParam(value = "Id do endereço", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid AddressUpdateFormDto body) {
-		return ResponseEntity.ok(this.addressService.update(id, body));
+	public ResponseEntity<?> update(@ApiParam(value = "Id do endereço", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid AddressUpdateFormDto body) {
+		this.addressService.update(id, body);
+		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 
 	@ApiOperation(value = "Remove um endereço pelo id")

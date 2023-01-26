@@ -43,6 +43,12 @@ public class CustomerServiceImpl implements CustomerService {
 	public void save(CustomerFormDto body) {
 		mapper.getConfiguration().setAmbiguityIgnored(true);
 		CustomerEntity customer = mapper.map(body, CustomerEntity.class);
+
+		Optional<CustomerEntity> customerByEmail = this.customerRepository.findByEmail(body.getEmail());
+		if (customerByEmail.isPresent()) {
+			throw new InvalidAttributeException("Email already exists");
+		}
+
 		validation.validateSaveCustomer(customer);
 		customer.setPassword(new BCryptPasswordEncoder().encode(body.getPassword()));
 		this.customerRepository.save(customer);
@@ -53,18 +59,19 @@ public class CustomerServiceImpl implements CustomerService {
 		Optional<CustomerEntity> customer = this.customerRepository.findById(id);
 		if (!customer.isPresent()) {
 			throw new NotFoundAttributeException("Customer not found");
-		} else {
-			CustomerDto customerDtoResponse = mapper.map(customer.get(), CustomerDto.class);
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-			String formattedDate = customer.get().getBirthdate().format(formatter);
-			customerDtoResponse.setBirthdate(formattedDate);
-			List<AddressDto> addresses = this.addressRepository.findByCustomerId(id).stream().map(a -> mapper.map(a, AddressDto.class))
-					.collect(Collectors.toList());
-			if (!addresses.isEmpty()) {
-				customerDtoResponse.setAddresses(addresses);
-			}
-			return customerDtoResponse;
 		}
+
+		CustomerDto customerDtoResponse = mapper.map(customer.get(), CustomerDto.class);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String formattedDate = customer.get().getBirthdate().format(formatter);
+		customerDtoResponse.setBirthdate(formattedDate);
+		List<AddressDto> addresses = this.addressRepository.findByCustomerId(id).stream().map(a -> mapper.map(a, AddressDto.class))
+				.collect(Collectors.toList());
+		if (!addresses.isEmpty()) {
+			customerDtoResponse.setAddresses(addresses);
+		}
+		return customerDtoResponse;
+
 	}
 
 	@Override
@@ -73,6 +80,7 @@ public class CustomerServiceImpl implements CustomerService {
 		if (!customer.isPresent()) {
 			throw new NotFoundAttributeException("Customer not found");
 		}
+
 		customer.get().setCpf(body.getCpf());
 		customer.get().setFirstName(body.getFirstName());
 		customer.get().setLastName(body.getLastName());
@@ -89,13 +97,14 @@ public class CustomerServiceImpl implements CustomerService {
 		Optional<CustomerEntity> customer = this.customerRepository.findById(id);
 		if (!customer.isPresent()) {
 			throw new NotFoundAttributeException("Customer not found");
-		} else {
-			if (!body.getNewPassword().equals(body.getConfirmNewPassword())) {
-				throw new InvalidAttributeException("Passwords don't match");
-			}
-			validation.validatePasswordUpdateCustomer(customer.get());
-			customer.get().setPassword(new BCryptPasswordEncoder().encode(body.getNewPassword()));
 		}
+
+		if (!body.getNewPassword().equals(body.getConfirmNewPassword())) {
+			throw new InvalidAttributeException("Passwords don't match");
+		}
+
+		validation.validatePasswordUpdateCustomer(customer.get());
+		customer.get().setPassword(new BCryptPasswordEncoder().encode(body.getNewPassword()));
 		this.customerRepository.save(customer.get());
 	}
 

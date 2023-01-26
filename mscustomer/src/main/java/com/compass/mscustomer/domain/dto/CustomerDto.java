@@ -38,7 +38,7 @@ public class CustomerDto {
     @ApiModelProperty(value = "Email")
     private String email;
 
-    @ApiModelProperty(value = "Senha ")
+    @ApiModelProperty(value = "Senha")
     private String password;
 
     @ApiModelProperty(value = "Status (ativo ou inativo)")

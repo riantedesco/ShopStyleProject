@@ -33,20 +33,28 @@ public class AddressServiceImpl implements AddressService {
 	private Validation validation;
 
 	@Override
-	public AddressDto save(AddressFormDto body) {
+	public void save(AddressFormDto body) {
 		mapper.getConfiguration().setAmbiguityIgnored(true);
 		AddressEntity address = mapper.map(body, AddressEntity.class);
+
+		address.setId(null);
+		Optional<CustomerEntity> customer = this.customerRepository.findById(body.getCustomerId());
+		if(!customer.isPresent()) {
+			throw new InvalidAttributeException("Customer not found");
+		}
+		address.setCustomer(customer.get());
+
 		validation.validateSaveAddress(address);
-		AddressEntity response = this.addressRepository.save(address);
-        return mapper.map(response, AddressDto.class);
+		this.addressRepository.save(address);
 	}
 
 	@Override
-	public AddressDto update(Long id, AddressUpdateFormDto body) {
+	public void update(Long id, AddressUpdateFormDto body) {
 		Optional<AddressEntity> address = this.addressRepository.findById(id);
 		if (!address.isPresent()) {
 			throw new NotFoundAttributeException("Address not found");
 		}
+
 		address.get().setState(body.getState());
 		address.get().setCity(body.getCity());
 		address.get().setDistrict(body.getDistrict());
@@ -61,9 +69,8 @@ public class AddressServiceImpl implements AddressService {
 		}
 		address.get().setCustomer(customer.get());
 
-		validation.validateUpdateCustomer(customer.get());
-		AddressEntity response = this.addressRepository.save(address.get());
-		return mapper.map(response, AddressDto.class);
+		validation.validateUpdateAddress(address.get());
+		this.addressRepository.save(address.get());
 	}
 
 	@Override
@@ -72,6 +79,7 @@ public class AddressServiceImpl implements AddressService {
 		if (!address.isPresent()) {
 			throw new NotFoundAttributeException("Address not found");
 		}
+
 		this.addressRepository.deleteById(id);
 	}
 

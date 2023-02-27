@@ -45,7 +45,7 @@ public class CategoryController {
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Retorna a categoria encontrada"),
 			@ApiResponse(code = 404, message = "Categoria não encontrada")})
-	@GetMapping(value = "/{id}", produces = "application/json")
+	@GetMapping(value = "/{id}/products", produces = "application/json")
 	public ResponseEntity<CategoryWithProductsDto> find(@ApiParam(value = "Id da categoria", required = true, example = "1") @PathVariable Long id) {
 		return ResponseEntity.ok(this.categoryService.find(id));
 	}

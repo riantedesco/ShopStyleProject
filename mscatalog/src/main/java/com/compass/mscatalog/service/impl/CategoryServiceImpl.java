@@ -104,6 +104,9 @@ public class CategoryServiceImpl implements CategoryService {
 			if (!parent.isPresent()) {
 				throw new InvalidAttributeException("Parent not found");
 			}
+			if (parent.get().getActive().equals(false)) {
+				throw new InvalidAttributeException("Parent is inactive");
+			}
 			category.get().setParent(parent.get());
 		}
 

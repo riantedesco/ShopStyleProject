@@ -1,0 +1,1905 @@
+{
+	"info": {
+		"_postman_id": "20e830ec-3fcb-44a5-90e8-2df6f515cee7",
+		"name": "ShopStyleProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "mscustomer",
+			"item": [
+				{
+					"name": "login",
+					"item": [
+						{
+							"name": "/v1/login",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"maria1@email.com\",\r\n    \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7071/v1/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7071",
+									"path": [
+										"v1",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "customer",
+					"item": [
+						{
+							"name": "/v1/customers",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Maria\",\r\n    \"lastName\": \"Oliveira\",\r\n    \"sex\": \"FEMININO\",\r\n    \"cpf\": \"036.839.560-03\",\r\n    \"birthdate\": \"2002-03-30\",\r\n    \"email\": \"maria1@email.com\",\r\n    \"password\": \"12345678\",\r\n    \"active\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7071/v1/customers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7071",
+									"path": [
+										"v1",
+										"customers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/customers/:id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgUHJvamV0byBNZXJjYWRvIiwic3ViIjoiNiIsImlhdCI6MTY3NDA2Mjk2MywiZXhwIjoxNjc0MTQ5MzYzfQ.QmSMfi5AaSdJii-nkk_LENnQejKGLYjr8pw-hqMXsXU",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7071/v1/customers/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7071",
+									"path": [
+										"v1",
+										"customers",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/customers/:id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgbXNjdXN0b21lciIsInN1YiI6IjEiLCJpYXQiOjE2NjcyNDIyMDIsImV4cCI6MTY2NzMyODYwMn0.HtjI2PKtVPikg5Pr_cJYMN3zJuAlZTd2vdPpkWEkbks",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Maria\",\r\n    \"lastName\": \"Oliveira das Dores da Silva\",\r\n    \"sex\": \"FEMININO\",\r\n    \"cpf\": \"036.839.560-03\",\r\n    \"birthdate\": \"2002-03-30\",\r\n    \"email\": \"maria@email.com\",\r\n    \"password\": \"123456789\",\r\n    \"active\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7071/v1/customers/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7071",
+									"path": [
+										"v1",
+										"customers",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/customers/:id/password",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgbXNjdXN0b21lciIsInN1YiI6IjEiLCJpYXQiOjE2NjcyNDI4NzgsImV4cCI6MTY2NzMyOTI3OH0.cYLitAPdIgx2r6FPeFKtIfNHUgi6Za3-EE-vEtlYp7E",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"newpassword\": \"1234567890\",\r\n    \"rewritenewpassword\": \"1234567890\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7071/v1/customer/1/password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7071",
+									"path": [
+										"v1",
+										"customer",
+										"1",
+										"password"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "address",
+					"item": [
+						{
+							"name": "/v1/addresses",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgbXNjdXN0b21lciIsInN1YiI6IjEiLCJpYXQiOjE2NjcyNDI4NzgsImV4cCI6MTY2NzMyOTI3OH0.cYLitAPdIgx2r6FPeFKtIfNHUgi6Za3-EE-vEtlYp7E",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"state\": \"Ceará\",\r\n    \"city\": \"Fortaleza\",\r\n    \"district\": \"Conjunto Ceará\",\r\n    \"street\": \"Rua 202B\",\r\n    \"number\": \"902\",\r\n    \"cep\": \"60530-280\",\r\n    \"complement\": \"\",\r\n    \"customerId\": 5\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7071/v1/addresses",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7071",
+									"path": [
+										"v1",
+										"addresses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/addresses/:id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgbXNjdXN0b21lciIsInN1YiI6IjEiLCJpYXQiOjE2NjcyNDI4NzgsImV4cCI6MTY2NzMyOTI3OH0.cYLitAPdIgx2r6FPeFKtIfNHUgi6Za3-EE-vEtlYp7E",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"state\": \"Ceará\",\r\n    \"city\": \"Fortaleza\",\r\n    \"district\": \"Conjunto Cearáaaa\",\r\n    \"street\": \"Rua 202B\",\r\n    \"number\": \"902\",\r\n    \"cep\": \"60530-280\",\r\n    \"complement\": \"\",\r\n    \"idCustomer\": 1\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7071/v1/addresses/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7071",
+									"path": [
+										"v1",
+										"addresses",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/addresses/:id",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7071/v1/addresses/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7071",
+									"path": [
+										"v1",
+										"addresses",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "mscatalog",
+			"item": [
+				{
+					"name": "categories",
+					"item": [
+						{
+							"name": "/v1/categories",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Camisas de Futebol\",\r\n    \"active\": true,\r\n    \"parentId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7072/v1/categories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7072",
+									"path": [
+										"v1",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/categories",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7072/v1/categories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7072",
+									"path": [
+										"v1",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/categories/:id/products",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7072/v1/categories/3/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7072",
+									"path": [
+										"v1",
+										"categories",
+										"3",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/categories/:id",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Jaquetas\",\r\n    \"active\": true,\r\n    \"parentId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7072/v1/categories/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7072",
+									"path": [
+										"v1",
+										"categories",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/categories/:id",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7072/v1/categories/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7072",
+									"path": [
+										"v1",
+										"categories",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "products",
+					"item": [
+						{
+							"name": "/v1/products",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Camiseta\",\r\n    \"description\": \"Camiseta rosa listrada\",\r\n    \"brand\": \"Lacoste\",\r\n    \"material\": \"Algodão\",\r\n    \"active\": true,\r\n    \"categoryId\": 1\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7072/v1/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7072",
+									"path": [
+										"v1",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/products",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7072/v1/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7072",
+									"path": [
+										"v1",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/products/:id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7072/v1/products/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7072",
+									"path": [
+										"v1",
+										"products",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/products/:id",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Camiseta\",\r\n    \"description\": \"Camiseta rosa listrada\",\r\n    \"brand\": \"Lacoste\",\r\n    \"material\": \"Algodão\",\r\n    \"active\": true\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7072/v1/products/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7072",
+									"path": [
+										"v1",
+										"products",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/products/:id",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7072/v1/products/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7072",
+									"path": [
+										"v1",
+										"products",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "skus",
+					"item": [
+						{
+							"name": "/v1/skus",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": 249.99,\r\n    \"quantity\": 10,\r\n    \"color\": \"tricolor\",\r\n    \"size\": \"M\",\r\n    \"height\": 100,\r\n    \"width\": 80,\r\n    \"images\": [\"http://example.com/image-1.png\", \"http://example.com/image-2.png\", \"http://example.com/image-3.png\", \"http://example.com/image\"],\r\n    \"productId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7072/v1/skus",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7072",
+									"path": [
+										"v1",
+										"skus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/skus/:id",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": 249.99,\r\n    \"quantity\": 10,\r\n    \"color\": \"tricolor\",\r\n    \"size\": \"M\",\r\n    \"height\": 100,\r\n    \"width\": 80\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7072/v1/skus/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7072",
+									"path": [
+										"v1",
+										"skus",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/skus/:id",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7072/v1/skus/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7072",
+									"path": [
+										"v1",
+										"skus",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "mspayment",
+			"item": [
+				{
+					"name": "payments",
+					"item": [
+						{
+							"name": "/v1/payments",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"credit card\",\r\n    \"installments\": true,\r\n    \"active\": true\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7073/v1/payments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7073",
+									"path": [
+										"v1",
+										"payments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/payments",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7073/v1/payments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7073",
+									"path": [
+										"v1",
+										"payments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/payments/:id",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"credit card\",\r\n    \"installments\": true,\r\n    \"active\": true\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7073/v1/payments/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7073",
+									"path": [
+										"v1",
+										"payments",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/payments/:id",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7073/v1/payments/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7073",
+									"path": [
+										"v1",
+										"payments",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "installments",
+					"item": [
+						{
+							"name": "/v1/installments",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\": 5,\r\n    \"brand\": \"mastercard\",\r\n    \"paymentId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7073/v1/installments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7073",
+									"path": [
+										"v1",
+										"installments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/installments/:id",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\": 5,\r\n    \"brand\": \"mastercard\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7073/v1/installments/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7073",
+									"path": [
+										"v1",
+										"installments",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/installments/:id",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7073/v1/installments/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7073",
+									"path": [
+										"v1",
+										"installments",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "msorder",
+			"item": [
+				{
+					"name": "orders",
+					"item": [
+						{
+							"name": "/v1/orders",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer\": {\r\n        \"id\": 1,\r\n        \"addressId\": 1\r\n    },\r\n    \"payment\": {\r\n        \"id\": 1,\r\n        \"installments\": 0\r\n    },\r\n    \"cart\": [\r\n        {\r\n            \"skuId\": 1,\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"skuId\": 2,\r\n            \"quantity\": 5\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7074/v1/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7074",
+									"path": [
+										"v1",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/orders",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7074/v1/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7074",
+									"path": [
+										"v1",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/orders/customers/:id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7074/v1/orders/customers/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7074",
+									"path": [
+										"v1",
+										"orders",
+										"customers",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "msaudit",
+			"item": [
+				{
+					"name": "audit",
+					"item": [
+						{
+							"name": "/v1/audit/orders/:id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7075/v1/audit/orders/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7075",
+									"path": [
+										"v1",
+										"audit",
+										"orders",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "msbffshop",
+			"item": [
+				{
+					"name": "login",
+					"item": [
+						{
+							"name": "/v1/login",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"maria1@email.com\",\r\n    \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7076/v1/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7076",
+									"path": [
+										"v1",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "customer",
+					"item": [
+						{
+							"name": "/v1/customers",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Maria\",\r\n    \"lastName\": \"Oliveira\",\r\n    \"sex\": \"FEMININO\",\r\n    \"cpf\": \"036.839.560-03\",\r\n    \"birthdate\": \"2002-03-30\",\r\n    \"email\": \"maria1@email.com\",\r\n    \"password\": \"12345678\",\r\n    \"active\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7076/v1/customers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7076",
+									"path": [
+										"v1",
+										"customers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/customers/:id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgUHJvamV0byBNZXJjYWRvIiwic3ViIjoiNiIsImlhdCI6MTY3NDA2Mjk2MywiZXhwIjoxNjc0MTQ5MzYzfQ.QmSMfi5AaSdJii-nkk_LENnQejKGLYjr8pw-hqMXsXU",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7076/v1/customers/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7076",
+									"path": [
+										"v1",
+										"customers",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/customers/:id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgbXNjdXN0b21lciIsInN1YiI6IjEiLCJpYXQiOjE2NjcyNDIyMDIsImV4cCI6MTY2NzMyODYwMn0.HtjI2PKtVPikg5Pr_cJYMN3zJuAlZTd2vdPpkWEkbks",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Maria\",\r\n    \"lastName\": \"Oliveira das Dores da Silva\",\r\n    \"sex\": \"FEMININO\",\r\n    \"cpf\": \"036.839.560-03\",\r\n    \"birthdate\": \"2002-03-30\",\r\n    \"email\": \"maria@email.com\",\r\n    \"password\": \"123456789\",\r\n    \"active\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7076/v1/customers/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7076",
+									"path": [
+										"v1",
+										"customers",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/customers/:id/password",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgbXNjdXN0b21lciIsInN1YiI6IjEiLCJpYXQiOjE2NjcyNDI4NzgsImV4cCI6MTY2NzMyOTI3OH0.cYLitAPdIgx2r6FPeFKtIfNHUgi6Za3-EE-vEtlYp7E",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"newpassword\": \"1234567890\",\r\n    \"rewritenewpassword\": \"1234567890\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7076/v1/customer/1/password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7076",
+									"path": [
+										"v1",
+										"customer",
+										"1",
+										"password"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "address",
+					"item": [
+						{
+							"name": "/v1/addresses",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgbXNjdXN0b21lciIsInN1YiI6IjEiLCJpYXQiOjE2NjcyNDI4NzgsImV4cCI6MTY2NzMyOTI3OH0.cYLitAPdIgx2r6FPeFKtIfNHUgi6Za3-EE-vEtlYp7E",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"state\": \"Ceará\",\r\n    \"city\": \"Fortaleza\",\r\n    \"district\": \"Conjunto Ceará\",\r\n    \"street\": \"Rua 202B\",\r\n    \"number\": \"902\",\r\n    \"cep\": \"60530-280\",\r\n    \"complement\": \"\",\r\n    \"customerId\": 5\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7076/v1/addresses",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7076",
+									"path": [
+										"v1",
+										"addresses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/addresses/:id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgbXNjdXN0b21lciIsInN1YiI6IjEiLCJpYXQiOjE2NjcyNDI4NzgsImV4cCI6MTY2NzMyOTI3OH0.cYLitAPdIgx2r6FPeFKtIfNHUgi6Za3-EE-vEtlYp7E",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"state\": \"Ceará\",\r\n    \"city\": \"Fortaleza\",\r\n    \"district\": \"Conjunto Cearáaaa\",\r\n    \"street\": \"Rua 202B\",\r\n    \"number\": \"902\",\r\n    \"cep\": \"60530-280\",\r\n    \"complement\": \"\",\r\n    \"idCustomer\": 1\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7076/v1/addresses/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7076",
+									"path": [
+										"v1",
+										"addresses",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/addresses/:id",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7076/v1/addresses/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7076",
+									"path": [
+										"v1",
+										"addresses",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "products",
+					"item": [
+						{
+							"name": "/v1/products",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7076/v1/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7076",
+									"path": [
+										"v1",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/products/:id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7076/v1/products/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7076",
+									"path": [
+										"v1",
+										"products",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "categories",
+					"item": [
+						{
+							"name": "/v1/categories",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7076/v1/categories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7076",
+									"path": [
+										"v1",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/categories/:id/products",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7076/v1/categories/3/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7076",
+									"path": [
+										"v1",
+										"categories",
+										"3",
+										"products"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "payments",
+					"item": [
+						{
+							"name": "/v1/payments",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7076/v1/payments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7076",
+									"path": [
+										"v1",
+										"payments"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "orders",
+					"item": [
+						{
+							"name": "/v1/orders",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer\": {\r\n        \"id\": 1,\r\n        \"addressId\": 1\r\n    },\r\n    \"payment\": {\r\n        \"id\": 1,\r\n        \"installments\": 0\r\n    },\r\n    \"cart\": [\r\n        {\r\n            \"skuId\": 1,\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"skuId\": 2,\r\n            \"quantity\": 5\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7076/v1/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7076",
+									"path": [
+										"v1",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/v1/orders/customers/:id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7076/v1/orders/customers/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7076",
+									"path": [
+										"v1",
+										"orders",
+										"customers",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

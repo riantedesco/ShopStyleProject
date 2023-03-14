@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
 
-@org.springframework.web.bind.annotation.ControllerAdvice(basePackages = "com.compass.mscustomer.controller")
+@org.springframework.web.bind.annotation.ControllerAdvice(basePackages = "com.compass.mscatalog.controller")
 public class ControllerAdvice {
 
     @ResponseBody

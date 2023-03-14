@@ -24,7 +24,7 @@ public class CategoryController {
 
 	@ApiOperation(value = "Cadastra uma categoria")
 	@ApiResponses(value = {
-			@ApiResponse(code = 201, message = "Retorna a categoria  recém cadastrada"),
+			@ApiResponse(code = 201, message = "Retorna a categoria recém cadastrada"),
 			@ApiResponse(code = 400, message = "Erro na validação dos dados enviados no corpo da requisição")})
 	@PostMapping(consumes = "application/json", produces = "application/json")
 	@Transactional

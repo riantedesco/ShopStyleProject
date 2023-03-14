@@ -2,9 +2,11 @@ package com.compass.mscatalog.service.impl;
 
 import com.compass.mscatalog.domain.CategoryEntity;
 import com.compass.mscatalog.domain.ProductEntity;
+import com.compass.mscatalog.domain.SkuEntity;
 import com.compass.mscatalog.domain.dto.CategoryDto;
 import com.compass.mscatalog.domain.dto.CategoryWithProductsDto;
 import com.compass.mscatalog.domain.dto.ProductDto;
+import com.compass.mscatalog.domain.dto.SkuDto;
 import com.compass.mscatalog.domain.dto.form.CategoryFormDto;
 import com.compass.mscatalog.domain.dto.form.ProductFormDto;
 import com.compass.mscatalog.domain.dto.form.ProductUpdateFormDto;
@@ -12,6 +14,7 @@ import com.compass.mscatalog.exception.InvalidAttributeException;
 import com.compass.mscatalog.exception.NotFoundAttributeException;
 import com.compass.mscatalog.repository.CategoryRepository;
 import com.compass.mscatalog.repository.ProductRepository;
+import com.compass.mscatalog.repository.SkuRepository;
 import com.compass.mscatalog.service.CategoryService;
 import com.compass.mscatalog.service.ProductService;
 import org.modelmapper.ModelMapper;
@@ -31,6 +34,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ProductRepository productRepository;
+
+	@Autowired
+	private SkuRepository skuRepository;
 
 	@Autowired
 	private ModelMapper mapper;
@@ -69,7 +75,18 @@ public class ProductServiceImpl implements ProductService {
 			throw new NotFoundAttributeException("Product not found");
 		}
 
-		return mapper.map(product.get(), ProductDto.class);
+		List<SkuEntity> skus = this.skuRepository.findByProductId(id);
+
+		ProductDto productDtoResponse = mapper.map(product.get(), ProductDto.class);
+		List<SkuDto> skuDtoList = new ArrayList<>();
+		for (SkuEntity sku: skus) {
+			SkuDto skuDtoResponse = mapper.map(sku, SkuDto.class);
+			skuDtoList.add(skuDtoResponse);
+		}
+
+		productDtoResponse.setSkus(skuDtoList);
+
+		return productDtoResponse;
 	}
 
 	@Override

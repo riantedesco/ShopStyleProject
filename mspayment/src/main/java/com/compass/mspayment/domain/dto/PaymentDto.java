@@ -13,27 +13,21 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ApiModel(value = "Retorno dos dados do produto")
-public class ProductDto {
+@ApiModel(value = "Retorno dos dados do pagamento")
+public class PaymentDto {
 
     @ApiModelProperty(value = "Id")
     private Long id;
 
-    @ApiModelProperty(value = "Nome")
-    private String name;
+    @ApiModelProperty(value = "Tipo")
+    private String type;
 
-    @ApiModelProperty(value = "Descrição")
-    private String description;
-
-    @ApiModelProperty(value = "Marca")
-    private String brand;
-
-    @ApiModelProperty(value = "Material")
-    private String material;
+    @ApiModelProperty(value = "Parcelamento (sim ou não)")
+    private Boolean existsInstallments;
 
     @ApiModelProperty(value = "Status (ativo ou inativo)")
     private Boolean active;
 
-    @ApiModelProperty(value = "Skus")
-    private List<SkuDto> skus;
+    @ApiModelProperty(value = "Parcelas")
+    private List<InstallmentDto> installments;
 }

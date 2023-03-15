@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface ProductRepository extends JpaRepository<InstallmentEntity, Long> {
+public interface InstallmentRepository extends JpaRepository<InstallmentEntity, Long> {
 
-    @Query("SELECT p FROM ProductEntity p WHERE p.category.id = :categoryId")
-    List<InstallmentEntity> findByCategoryId(Long categoryId);
+    @Query("SELECT i FROM InstallmentEntity i WHERE i.payment.id = :paymentId")
+    List<InstallmentEntity> findByPaymentId(Long paymentId);
 
 }

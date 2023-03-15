@@ -23,7 +23,7 @@ public class PaymentEntity {
     private String type;
 
     @Column(name = "installments")
-    private Boolean installments;
+    private Boolean existsInstallments;
 
     @Column(name = "active")
     private Boolean active;

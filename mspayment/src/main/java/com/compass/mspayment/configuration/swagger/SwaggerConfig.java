@@ -1,4 +1,4 @@
-package com.compass.mspayment.configuration;
+package com.compass.mspayment.configuration.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,9 +34,47 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo());
     }
 
+    private List<ResponseMessage> responseMessagePost() {
+        return new ArrayList<ResponseMessage>() {
+            {
+                add(new ResponseMessageBuilder()
+                        .code(200)
+                        .message("Ok")
+                        .build());
+                add(new ResponseMessageBuilder()
+                        .code(404)
+                        .message("Not found")
+                        .build());
+            }
+        };
+    }
+
     private List<ResponseMessage> responseMessageGet() {
         return new ArrayList<ResponseMessage>() {
             {
+                add(new ResponseMessageBuilder()
+                        .code(201)
+                        .message("Created")
+                        .build());
+                add(new ResponseMessageBuilder()
+                        .code(404)
+                        .message("Not found")
+                        .build());
+            }
+        };
+    }
+
+    private List<ResponseMessage> responseMessagePut() {
+        return new ArrayList<ResponseMessage>() {
+            {
+                add(new ResponseMessageBuilder()
+                        .code(200)
+                        .message("Ok")
+                        .build());
+                add(new ResponseMessageBuilder()
+                        .code(400)
+                        .message("Bad request")
+                        .build());
                 add(new ResponseMessageBuilder()
                         .code(404)
                         .message("Not found")
@@ -49,30 +87,8 @@ public class SwaggerConfig {
         return new ArrayList<ResponseMessage>() {
             {
                 add(new ResponseMessageBuilder()
-                        .code(404)
-                        .message("Not found")
-                        .build());
-            }
-        };
-    }
-
-    private List<ResponseMessage> responseMessagePost() {
-        return new ArrayList<ResponseMessage>() {
-            {
-                add(new ResponseMessageBuilder()
-                        .code(400)
-                        .message("Bad request")
-                        .build());
-            }
-        };
-    }
-
-    private List<ResponseMessage> responseMessagePut() {
-        return new ArrayList<ResponseMessage>() {
-            {
-                add(new ResponseMessageBuilder()
-                        .code(400)
-                        .message("Bad request")
+                        .code(204)
+                        .message("No content")
                         .build());
                 add(new ResponseMessageBuilder()
                         .code(404)

@@ -13,26 +13,17 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ApiModel(value = "Envio dos dados de atualização do produto")
-public class ProductUpdateFormDto {
+@ApiModel(value = "Envio dos dados da parcela")
+public class InstallmentFormDto {
 
-    @ApiModelProperty(value = "Nome")
+    @ApiModelProperty(value = "Quantidade")
     @NotNull
-    private String name;
-
-    @ApiModelProperty(value = "Descrição")
-    @NotNull
-    private String description;
+    private Long amount;
 
     @ApiModelProperty(value = "Marca")
-    @NotNull
     private String brand;
 
-    @ApiModelProperty(value = "Material")
-    private String material;
-
-    @ApiModelProperty(value = "Status (ativo ou inativo)")
+    @ApiModelProperty(value = "Id do pagamento")
     @NotNull
-    private Boolean active;
-
+    private Long paymentId;
 }

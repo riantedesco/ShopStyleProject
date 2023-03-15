@@ -1,8 +1,7 @@
 package com.compass.mspayment.service.impl;
 
-import com.compass.mspayment.domain.CategoryEntity;
-import com.compass.mspayment.domain.ProductEntity;
-import com.compass.mspayment.domain.SkuEntity;
+import com.compass.mspayment.domain.PaymentEntity;
+import com.compass.mspayment.domain.InstallmentEntity;
 import com.compass.mspayment.domain.dto.ProductDto;
 import com.compass.mspayment.domain.dto.SkuDto;
 import com.compass.mspayment.domain.dto.form.ProductFormDto;
@@ -40,11 +39,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void save(ProductFormDto body) {
 		mapper.getConfiguration().setAmbiguityIgnored(true);
-		ProductEntity product = mapper.map(body, ProductEntity.class);
+		InstallmentEntity product = mapper.map(body, InstallmentEntity.class);
 
 		if(body.getCategoryId() != null) {
 			product.setId(null);
-			Optional<CategoryEntity> category = this.categoryRepository.findById(body.getCategoryId());
+			Optional<PaymentEntity> category = this.categoryRepository.findById(body.getCategoryId());
 			if(!category.isPresent()) {
 				throw new InvalidAttributeException("Category not found");
 			}
@@ -66,7 +65,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ProductDto find(Long id) {
-		Optional<ProductEntity> product = this.productRepository.findById(id);
+		Optional<InstallmentEntity> product = this.productRepository.findById(id);
 		if (!product.isPresent()) {
 			throw new NotFoundAttributeException("Product not found");
 		}
@@ -87,7 +86,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void update(Long id, ProductUpdateFormDto body) {
-		Optional<ProductEntity> product = this.productRepository.findById(id);
+		Optional<InstallmentEntity> product = this.productRepository.findById(id);
 		if (!product.isPresent()) {
 			throw new NotFoundAttributeException("Product not found");
 		}
@@ -103,7 +102,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void delete(Long id) {
-		Optional<ProductEntity> product = this.productRepository.findById(id);
+		Optional<InstallmentEntity> product = this.productRepository.findById(id);
 		if (!product.isPresent()) {
 			throw new NotFoundAttributeException("Product not found");
 		}

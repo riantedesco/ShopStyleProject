@@ -1,8 +1,6 @@
 package com.compass.mspayment.service.impl;
 
-import com.compass.mspayment.domain.MediaEntity;
-import com.compass.mspayment.domain.ProductEntity;
-import com.compass.mspayment.domain.SkuEntity;
+import com.compass.mspayment.domain.InstallmentEntity;
 import com.compass.mspayment.domain.dto.form.SkuFormDto;
 import com.compass.mspayment.domain.dto.form.SkuUpdateFormDto;
 import com.compass.mspayment.exception.InvalidAttributeException;
@@ -35,7 +33,7 @@ public class SkuServiceImpl implements SkuService {
 
 		if(body.getProductId() != null) {
 			sku.setId(null);
-			Optional<ProductEntity> product = this.productRepository.findById(body.getProductId());
+			Optional<InstallmentEntity> product = this.productRepository.findById(body.getProductId());
 			if(!product.isPresent()) {
 				throw new InvalidAttributeException("Product not found");
 			}

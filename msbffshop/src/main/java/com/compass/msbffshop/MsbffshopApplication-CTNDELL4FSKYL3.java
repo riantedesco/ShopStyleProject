@@ -1,4 +1,4 @@
-package com.compass.mspayment;
+package com.compass.msbffshop;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
@@ -8,7 +8,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class MspaymentApplication {
+public class MsbffshopApplication {
 
 	@Bean
 	public ModelMapper modelMapper() {
@@ -16,7 +16,7 @@ public class MspaymentApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(MspaymentApplication.class, args);
+		SpringApplication.run(MsbffshopApplication.class, args);
 	}
 
 }

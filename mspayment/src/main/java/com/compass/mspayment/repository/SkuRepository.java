@@ -1,6 +1,5 @@
 package com.compass.mspayment.repository;
 
-import com.compass.mspayment.domain.SkuEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

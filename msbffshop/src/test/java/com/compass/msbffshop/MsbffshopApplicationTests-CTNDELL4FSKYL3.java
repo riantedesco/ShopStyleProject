@@ -1,10 +1,10 @@
-package com.compass.mspayment;
+package com.compass.msbffshop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MspaymentApplicationTests {
+class MsbffshopApplicationTests {
 
 	@Test
 	void contextLoads() {

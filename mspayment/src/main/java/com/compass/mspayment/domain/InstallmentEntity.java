@@ -12,20 +12,20 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CategoryEntity {
+public class InstallmentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "amount")
+    private Long amount;
 
-    @Column(name = "active")
-    private Boolean active;
+    @Column(name = "brand")
+    private String brand;
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
-    private CategoryEntity parent;
+    private PaymentEntity payment;
 }

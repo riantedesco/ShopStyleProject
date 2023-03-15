@@ -1,6 +1,6 @@
 package com.compass.mspayment.service.impl;
 
-import com.compass.mspayment.domain.CategoryEntity;
+import com.compass.mspayment.domain.PaymentEntity;
 import com.compass.mspayment.domain.dto.CategoryDto;
 import com.compass.mspayment.domain.dto.CategoryWithProductsDto;
 import com.compass.mspayment.domain.dto.ProductDto;
@@ -34,11 +34,11 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public void save(CategoryFormDto body) {
 		mapper.getConfiguration().setAmbiguityIgnored(true);
-		CategoryEntity category = mapper.map(body, CategoryEntity.class);
+		PaymentEntity category = mapper.map(body, PaymentEntity.class);
 
 		if(body.getParentId() != null) {
 			category.setId(null);
-			Optional<CategoryEntity> parent = this.categoryRepository.findById(body.getParentId());
+			Optional<PaymentEntity> parent = this.categoryRepository.findById(body.getParentId());
 			if(!parent.isPresent()) {
 				throw new InvalidAttributeException("Parent not found");
 			}
@@ -57,7 +57,7 @@ public class CategoryServiceImpl implements CategoryService {
 				.collect(Collectors.toList());
 		List<CategoryDto> categoriesResponse = new ArrayList<>();
 		for (CategoryDto categoryDto: categoriesDto) {
-				Optional<CategoryEntity> category = this.categoryRepository.findById(categoryDto.getId());
+				Optional<PaymentEntity> category = this.categoryRepository.findById(categoryDto.getId());
 //			if (category.get().getParent() == null) {
 				List<CategoryDto> children = this.categoryRepository.findByParentId(category.get().getId()).stream().map(c -> mapper.map(c, CategoryDto.class))
 						.collect(Collectors.toList());
@@ -73,7 +73,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public CategoryWithProductsDto find(Long id) {
-		Optional<CategoryEntity> category = this.categoryRepository.findById(id);
+		Optional<PaymentEntity> category = this.categoryRepository.findById(id);
 		if (!category.isPresent()) {
 			throw new NotFoundAttributeException("Category not found");
 		}
@@ -91,7 +91,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public void update(Long id, CategoryFormDto body) {
-		Optional<CategoryEntity> category = this.categoryRepository.findById(id);
+		Optional<PaymentEntity> category = this.categoryRepository.findById(id);
 		if (!category.isPresent()) {
 			throw new NotFoundAttributeException("Category not found");
 		}
@@ -100,7 +100,7 @@ public class CategoryServiceImpl implements CategoryService {
 		category.get().setActive(body.getActive());
 
 		if (body.getParentId() != null) {
-			Optional<CategoryEntity> parent = this.categoryRepository.findById(body.getParentId());
+			Optional<PaymentEntity> parent = this.categoryRepository.findById(body.getParentId());
 			if (!parent.isPresent()) {
 				throw new InvalidAttributeException("Parent not found");
 			}
@@ -115,7 +115,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public void delete(Long id) {
-		Optional<CategoryEntity> category = this.categoryRepository.findById(id);
+		Optional<PaymentEntity> category = this.categoryRepository.findById(id);
 		if (!category.isPresent()) {
 			throw new NotFoundAttributeException("Category not found");
 		}

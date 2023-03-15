@@ -5,6 +5,7 @@ import com.compass.mspayment.domain.PaymentEntity;
 import com.compass.mspayment.domain.dto.InstallmentDto;
 import com.compass.mspayment.domain.dto.PaymentDto;
 import com.compass.mspayment.domain.dto.form.PaymentFormDto;
+import com.compass.mspayment.domain.dto.form.PaymentUpdateFormDto;
 import com.compass.mspayment.exception.InvalidAttributeException;
 import com.compass.mspayment.exception.NotFoundAttributeException;
 import com.compass.mspayment.repository.InstallmentRepository;
@@ -46,7 +47,8 @@ public class PaymentServiceImpl implements PaymentService {
 		List<PaymentDto> paymentsResponse = new ArrayList<>();
 
 		for (PaymentDto paymentDto: payments) {
-			List<InstallmentDto> installments = this.installmentRepository.findByPaymentId(paymentDto.getId()).stream().map(i -> mapper.map(i, InstallmentDto.class))
+			List<InstallmentDto> installments = this.installmentRepository.findByPaymentId(paymentDto.getId())
+					.stream().map(i -> mapper.map(i, InstallmentDto.class))
 					.collect(Collectors.toList());
 			if (!installments.isEmpty()) {
 				paymentDto.setInstallments(installments);
@@ -58,7 +60,7 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public void update(Long id, PaymentFormDto body) {
+	public void update(Long id, PaymentUpdateFormDto body) {
 		Optional<PaymentEntity> payment = this.paymentRepository.findById(id);
 		if (!payment.isPresent()) {
 			throw new NotFoundAttributeException("Payment " + id + " not found");

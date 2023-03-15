@@ -2,7 +2,6 @@ package com.compass.mscustomer.service.impl;
 
 import com.compass.mscustomer.domain.AddressEntity;
 import com.compass.mscustomer.domain.CustomerEntity;
-import com.compass.mscustomer.domain.dto.AddressDto;
 import com.compass.mscustomer.domain.dto.form.AddressFormDto;
 import com.compass.mscustomer.domain.dto.form.AddressUpdateFormDto;
 import com.compass.mscustomer.exception.InvalidAttributeException;
@@ -10,7 +9,6 @@ import com.compass.mscustomer.exception.NotFoundAttributeException;
 import com.compass.mscustomer.repository.AddressRepository;
 import com.compass.mscustomer.repository.CustomerRepository;
 import com.compass.mscustomer.service.AddressService;
-import com.compass.mscustomer.util.validation.Validation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,9 +26,6 @@ public class AddressServiceImpl implements AddressService {
 
 	@Autowired
 	private ModelMapper mapper;
-	
-	@Autowired
-	private Validation validation;
 
 	@Override
 	public void save(AddressFormDto body) {
@@ -40,11 +35,10 @@ public class AddressServiceImpl implements AddressService {
 		address.setId(null);
 		Optional<CustomerEntity> customer = this.customerRepository.findById(body.getCustomerId());
 		if(!customer.isPresent()) {
-			throw new InvalidAttributeException("Customer not found");
+			throw new InvalidAttributeException("Customer " + body.getCustomerId() + " not found");
 		}
 		address.setCustomer(customer.get());
 
-		validation.validateSaveAddress(address);
 		this.addressRepository.save(address);
 	}
 
@@ -52,7 +46,7 @@ public class AddressServiceImpl implements AddressService {
 	public void update(Long id, AddressUpdateFormDto body) {
 		Optional<AddressEntity> address = this.addressRepository.findById(id);
 		if (!address.isPresent()) {
-			throw new NotFoundAttributeException("Address not found");
+			throw new NotFoundAttributeException("Address " + id + " not found");
 		}
 
 		address.get().setState(body.getState());
@@ -65,11 +59,10 @@ public class AddressServiceImpl implements AddressService {
 
 		Optional<CustomerEntity> customer = this.customerRepository.findById(body.getCustomerId());
 		if (!customer.isPresent()) {
-			throw new InvalidAttributeException("Customer not found");
+			throw new InvalidAttributeException("Customer " + body.getCustomerId() + " not found");
 		}
 		address.get().setCustomer(customer.get());
 
-		validation.validateUpdateAddress(address.get());
 		this.addressRepository.save(address.get());
 	}
 
@@ -77,7 +70,7 @@ public class AddressServiceImpl implements AddressService {
 	public void delete(Long id) {
 		Optional<AddressEntity> address = this.addressRepository.findById(id);
 		if (!address.isPresent()) {
-			throw new NotFoundAttributeException("Address not found");
+			throw new NotFoundAttributeException("Address " + id + " not found");
 		}
 
 		this.addressRepository.deleteById(id);

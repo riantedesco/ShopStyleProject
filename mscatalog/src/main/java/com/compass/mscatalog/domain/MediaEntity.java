@@ -22,7 +22,7 @@ public class MediaEntity {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     private SkuEntity sku;
 }

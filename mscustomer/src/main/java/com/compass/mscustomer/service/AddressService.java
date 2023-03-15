@@ -1,6 +1,5 @@
 package com.compass.mscustomer.service;
 
-import com.compass.mscustomer.domain.dto.AddressDto;
 import com.compass.mscustomer.domain.dto.form.AddressFormDto;
 import com.compass.mscustomer.domain.dto.form.AddressUpdateFormDto;
 

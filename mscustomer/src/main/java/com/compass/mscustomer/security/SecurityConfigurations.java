@@ -51,14 +51,16 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated()
 				.and().csrf().disable()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and().addFilterBefore(new AuthenticationByTokenFilter(tokenService, customerRepository), UsernamePasswordAuthenticationFilter.class);
+				.and().addFilterBefore(new AuthenticationByTokenFilter(tokenService, customerRepository),
+						UsernamePasswordAuthenticationFilter.class);
 	}
 	
 	//Configuracoes de recursos estaticos(js, css, imagens, etc.)
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring()
-        .antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**");
+        .antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**",
+				"/swagger-resources/**");
 	}
 	
 }

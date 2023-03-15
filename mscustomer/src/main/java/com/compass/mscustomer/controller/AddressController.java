@@ -1,6 +1,5 @@
 package com.compass.mscustomer.controller;
 
-import com.compass.mscustomer.domain.dto.AddressDto;
 import com.compass.mscustomer.domain.dto.form.AddressFormDto;
 import com.compass.mscustomer.domain.dto.form.AddressUpdateFormDto;
 import com.compass.mscustomer.service.AddressService;
@@ -39,7 +38,8 @@ public class AddressController {
 			@ApiResponse(code = 404, message = "Endereço não encontrado")})
 	@PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
 	@Transactional
-	public ResponseEntity<?> update(@ApiParam(value = "Id do endereço", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid AddressUpdateFormDto body) {
+	public ResponseEntity<?> update(@ApiParam(value = "Id do endereço", required = true, example = "1")
+										@PathVariable Long id, @RequestBody @Valid AddressUpdateFormDto body) {
 		this.addressService.update(id, body);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
@@ -50,7 +50,8 @@ public class AddressController {
 			@ApiResponse(code = 404, message = "Endereço não encontrado")})
 	@DeleteMapping(value = "/{id}")
 	@Transactional
-	public ResponseEntity<?> delete(@ApiParam(value = "Id do endereço", required = true, example = "1") @PathVariable Long id) {
+	public ResponseEntity<?> delete(@ApiParam(value = "Id do endereço", required = true, example = "1")
+										@PathVariable Long id) {
 		this.addressService.delete(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}

@@ -46,7 +46,8 @@ public class CategoryController {
 			@ApiResponse(code = 200, message = "Retorna a categoria encontrada"),
 			@ApiResponse(code = 404, message = "Categoria não encontrada")})
 	@GetMapping(value = "/{id}/products", produces = "application/json")
-	public ResponseEntity<CategoryWithProductsDto> find(@ApiParam(value = "Id da categoria", required = true, example = "1") @PathVariable Long id) {
+	public ResponseEntity<CategoryWithProductsDto> find(@ApiParam(value = "Id da categoria", required = true,
+			example = "1") @PathVariable Long id) {
 		return ResponseEntity.ok(this.categoryService.find(id));
 	}
 
@@ -57,7 +58,8 @@ public class CategoryController {
 			@ApiResponse(code = 404, message = "Categoria não encontrada")})
 	@PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
 	@Transactional
-	public ResponseEntity<?> update(@ApiParam(value = "Id da categoria", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid CategoryFormDto body) {
+	public ResponseEntity<?> update(@ApiParam(value = "Id da categoria", required = true, example = "1")
+										@PathVariable Long id, @RequestBody @Valid CategoryFormDto body) {
 		this.categoryService.update(id, body);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
@@ -68,7 +70,8 @@ public class CategoryController {
 			@ApiResponse(code = 404, message = "Categoria não encontrada")})
 	@DeleteMapping(value = "/{id}")
 	@Transactional
-	public ResponseEntity<?> delete(@ApiParam(value = "Id da categoria", required = true, example = "1") @PathVariable Long id) {
+	public ResponseEntity<?> delete(@ApiParam(value = "Id da categoria", required = true, example = "1")
+										@PathVariable Long id) {
 		this.categoryService.delete(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}

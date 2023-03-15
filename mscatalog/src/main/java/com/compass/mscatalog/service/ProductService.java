@@ -1,6 +1,7 @@
 package com.compass.mscatalog.service;
 
 import com.compass.mscatalog.domain.dto.ProductDto;
+import com.compass.mscatalog.domain.dto.ProductWithSkusDto;
 import com.compass.mscatalog.domain.dto.form.ProductFormDto;
 import com.compass.mscatalog.domain.dto.form.ProductUpdateFormDto;
 
@@ -12,7 +13,7 @@ public interface ProductService {
 
     List<ProductDto> list();
 
-    ProductDto find(Long id);
+    ProductWithSkusDto find(Long id);
 
     void update(Long id, ProductUpdateFormDto body);
 

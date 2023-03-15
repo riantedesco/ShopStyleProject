@@ -2,6 +2,7 @@ package com.compass.mspayment.controller;
 
 import com.compass.mspayment.domain.dto.PaymentDto;
 import com.compass.mspayment.domain.dto.form.PaymentFormDto;
+import com.compass.mspayment.domain.dto.form.PaymentUpdateFormDto;
 import com.compass.mspayment.service.PaymentService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class PaymentController {
 			@ApiResponse(code = 404, message = "Pagamento não encontrado")})
 	@PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
 	@Transactional
-	public ResponseEntity<?> update(@ApiParam(value = "Id do pagamento", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid PaymentFormDto body) {
+	public ResponseEntity<?> update(@ApiParam(value = "Id do pagamento", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid PaymentUpdateFormDto body) {
 		this.paymentService.update(id, body);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}

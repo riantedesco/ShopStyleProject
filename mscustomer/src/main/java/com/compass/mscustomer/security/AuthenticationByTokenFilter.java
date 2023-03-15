@@ -23,7 +23,8 @@ public class AuthenticationByTokenFilter extends OncePerRequestFilter {
 	}
 
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws ServletException, IOException {
 		String token = catchToken(request);
 		boolean validToken = tokenService.isValidToken(token);
 		if (validToken) {
@@ -35,7 +36,8 @@ public class AuthenticationByTokenFilter extends OncePerRequestFilter {
 	private void authenticateCustomer(String token) {
 		Long customerId = tokenService.getCustomerId(token);
 		CustomerEntity customer = customerRepository.findById(customerId).get();
-		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(customer, null, customer.getAuthorities());
+		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(customer,
+				null, customer.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}
 

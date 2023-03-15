@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -39,5 +40,13 @@ public class SkuUpdateFormDto {
     @ApiModelProperty(value = "Largura")
     @NotNull
     private Double width;
+
+    @ApiModelProperty(value = "Imagens")
+    @NotNull
+    private List<String> images;
+
+    @ApiModelProperty(value = "Id do produto")
+    @NotNull
+    private Long productId;
 
 }

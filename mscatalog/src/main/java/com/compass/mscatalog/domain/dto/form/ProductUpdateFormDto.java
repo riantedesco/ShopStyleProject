@@ -35,4 +35,8 @@ public class ProductUpdateFormDto {
     @NotNull
     private Boolean active;
 
+    @ApiModelProperty(value = "Id da categoria")
+    @NotNull
+    private Long categoryId;
+
 }

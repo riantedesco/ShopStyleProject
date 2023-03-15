@@ -38,7 +38,8 @@ public class SkuController {
 			@ApiResponse(code = 404, message = "Sku não encontrada")})
 	@PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
 	@Transactional
-	public ResponseEntity<?> update(@ApiParam(value = "Id da sku", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid SkuUpdateFormDto body) {
+	public ResponseEntity<?> update(@ApiParam(value = "Id da sku", required = true, example = "1")
+										@PathVariable Long id, @RequestBody @Valid SkuUpdateFormDto body) {
 		this.skuService.update(id, body);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
@@ -49,7 +50,8 @@ public class SkuController {
 			@ApiResponse(code = 404, message = "Sku não encontrada")})
 	@DeleteMapping(value = "/{id}")
 	@Transactional
-	public ResponseEntity<?> delete(@ApiParam(value = "Id da sku", required = true, example = "1") @PathVariable Long id) {
+	public ResponseEntity<?> delete(@ApiParam(value = "Id da sku", required = true, example = "1")
+										@PathVariable Long id) {
 		this.skuService.delete(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}

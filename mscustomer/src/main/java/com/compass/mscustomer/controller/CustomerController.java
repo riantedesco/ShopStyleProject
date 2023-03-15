@@ -1,7 +1,6 @@
 package com.compass.mscustomer.controller;
 
 import com.compass.mscustomer.domain.dto.CustomerDto;
-import com.compass.mscustomer.domain.dto.CustomerUpdateDto;
 import com.compass.mscustomer.domain.dto.form.CustomerFormDto;
 import com.compass.mscustomer.domain.dto.form.CustomerPasswordUpdateFormDto;
 import com.compass.mscustomer.domain.dto.form.CustomerUpdateFormDto;
@@ -39,7 +38,8 @@ public class CustomerController {
 			@ApiResponse(code = 200, message = "Retorna o cliente encontrado"),
 			@ApiResponse(code = 404, message = "Cliente não encontrado")})
 	@GetMapping(value = "/{id}", produces = "application/json")
-	public ResponseEntity<CustomerDto> find(@ApiParam(value = "Id do cliente", required = true, example = "1") @PathVariable Long id) {
+	public ResponseEntity<CustomerDto> find(@ApiParam(value = "Id do cliente", required = true, example = "1")
+												@PathVariable Long id) {
 		return ResponseEntity.ok(this.customerService.find(id));
 	}
 
@@ -50,7 +50,8 @@ public class CustomerController {
 			@ApiResponse(code = 404, message = "Cliente não encontrado")})
 	@PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
 	@Transactional
-	public ResponseEntity<?> update(@ApiParam(value = "Id do cliente", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid CustomerUpdateFormDto body) {
+	public ResponseEntity<?> update(@ApiParam(value = "Id do cliente", required = true, example = "1")
+										@PathVariable Long id, @RequestBody @Valid CustomerUpdateFormDto body) {
 		this.customerService.update(id, body);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
@@ -62,7 +63,9 @@ public class CustomerController {
 			@ApiResponse(code = 404, message = "Cliente não encontrado")})
 	@PutMapping(value = "/{id}/password", consumes = "application/json", produces = "application/json")
 	@Transactional
-	public ResponseEntity<?> updatePassword(@ApiParam(value = "Id do cliente", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid CustomerPasswordUpdateFormDto body) {
+	public ResponseEntity<?> updatePassword(@ApiParam(value = "Id do cliente", required = true, example = "1")
+												@PathVariable Long id,
+												@RequestBody @Valid CustomerPasswordUpdateFormDto body) {
 		this.customerService.updatePassword(id, body);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}

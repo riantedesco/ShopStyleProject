@@ -1,6 +1,7 @@
 package com.compass.mscatalog.controller;
 
 import com.compass.mscatalog.domain.dto.ProductDto;
+import com.compass.mscatalog.domain.dto.ProductWithSkusDto;
 import com.compass.mscatalog.domain.dto.form.ProductFormDto;
 import com.compass.mscatalog.domain.dto.form.ProductUpdateFormDto;
 import com.compass.mscatalog.service.ProductService;
@@ -46,7 +47,8 @@ public class ProductController {
 			@ApiResponse(code = 200, message = "Retorna o produto encontrado"),
 			@ApiResponse(code = 404, message = "Produto não encontrado")})
 	@GetMapping(value = "/{id}", produces = "application/json")
-	public ResponseEntity<ProductDto> find(@ApiParam(value = "Id do produto", required = true, example = "1") @PathVariable Long id) {
+	public ResponseEntity<ProductWithSkusDto> find(@ApiParam(value = "Id do produto", required = true, example = "1")
+											   @PathVariable Long id) {
 		return ResponseEntity.ok(this.productService.find(id));
 	}
 
@@ -57,7 +59,8 @@ public class ProductController {
 			@ApiResponse(code = 404, message = "Produto não encontrado")})
 	@PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
 	@Transactional
-	public ResponseEntity<?> update(@ApiParam(value = "Id do produto", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid ProductUpdateFormDto body) {
+	public ResponseEntity<?> update(@ApiParam(value = "Id do produto", required = true, example = "1")
+										@PathVariable Long id, @RequestBody @Valid ProductUpdateFormDto body) {
 		this.productService.update(id, body);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
@@ -68,7 +71,8 @@ public class ProductController {
 			@ApiResponse(code = 404, message = "Produto não encontrado")})
 	@DeleteMapping(value = "/{id}")
 	@Transactional
-	public ResponseEntity<?> delete(@ApiParam(value = "Id do produto", required = true, example = "1") @PathVariable Long id) {
+	public ResponseEntity<?> delete(@ApiParam(value = "Id do produto", required = true, example = "1")
+										@PathVariable Long id) {
 		this.productService.delete(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}

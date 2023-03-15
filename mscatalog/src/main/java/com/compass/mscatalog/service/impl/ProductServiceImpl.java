@@ -1,18 +1,17 @@
 package com.compass.mscatalog.service.impl;
 
 import com.compass.mscatalog.domain.CategoryEntity;
+import com.compass.mscatalog.domain.MediaEntity;
 import com.compass.mscatalog.domain.ProductEntity;
 import com.compass.mscatalog.domain.SkuEntity;
-import com.compass.mscatalog.domain.dto.CategoryDto;
-import com.compass.mscatalog.domain.dto.CategoryWithProductsDto;
-import com.compass.mscatalog.domain.dto.ProductDto;
-import com.compass.mscatalog.domain.dto.SkuDto;
+import com.compass.mscatalog.domain.dto.*;
 import com.compass.mscatalog.domain.dto.form.CategoryFormDto;
 import com.compass.mscatalog.domain.dto.form.ProductFormDto;
 import com.compass.mscatalog.domain.dto.form.ProductUpdateFormDto;
 import com.compass.mscatalog.exception.InvalidAttributeException;
 import com.compass.mscatalog.exception.NotFoundAttributeException;
 import com.compass.mscatalog.repository.CategoryRepository;
+import com.compass.mscatalog.repository.MediaRepository;
 import com.compass.mscatalog.repository.ProductRepository;
 import com.compass.mscatalog.repository.SkuRepository;
 import com.compass.mscatalog.service.CategoryService;
@@ -36,6 +35,9 @@ public class ProductServiceImpl implements ProductService {
 	private ProductRepository productRepository;
 
 	@Autowired
+	private MediaRepository mediaRepository;
+
+	@Autowired
 	private SkuRepository skuRepository;
 
 	@Autowired
@@ -46,54 +48,59 @@ public class ProductServiceImpl implements ProductService {
 		mapper.getConfiguration().setAmbiguityIgnored(true);
 		ProductEntity product = mapper.map(body, ProductEntity.class);
 
-		if(body.getCategoryId() != null) {
-			product.setId(null);
-			Optional<CategoryEntity> category = this.categoryRepository.findById(body.getCategoryId());
-			if(!category.isPresent()) {
-				throw new InvalidAttributeException("Category not found");
-			}
-			if(category.get().getActive().equals(false)) {
-				throw new InvalidAttributeException("Category is inactive");
-			}
-			product.setCategory(category.get());
+		product.setId(null);
+		Optional<CategoryEntity> category = this.categoryRepository.findById(body.getCategoryId());
+		if(!category.isPresent()) {
+			throw new InvalidAttributeException("Category " + body.getCategoryId() + " not found");
 		}
+		if(category.get().getActive().equals(false)) {
+			throw new InvalidAttributeException("Category " + body.getCategoryId() + " is inactive");
+		}
+		product.setCategory(category.get());
 
 		this.productRepository.save(product);
 	}
 
 	@Override
 	public List<ProductDto> list() {
-		List<ProductDto> productsDto = this.productRepository.findAll().stream().map(p -> mapper.map(p, ProductDto.class))
+		List<ProductDto> productsDto = this.productRepository.findAll().stream()
+				.map(p -> mapper.map(p, ProductDto.class))
 				.collect(Collectors.toList());
 		return productsDto;
 	}
 
 	@Override
-	public ProductDto find(Long id) {
+	public ProductWithSkusDto find(Long id) {
 		Optional<ProductEntity> product = this.productRepository.findById(id);
 		if (!product.isPresent()) {
-			throw new NotFoundAttributeException("Product not found");
+			throw new NotFoundAttributeException("Product " + id + " not found");
 		}
 
-		List<SkuEntity> skus = this.skuRepository.findByProductId(id);
+		ProductWithSkusDto productWithSkusDtoResponse = mapper.map(product.get(), ProductWithSkusDto.class);
 
-		ProductDto productDtoResponse = mapper.map(product.get(), ProductDto.class);
-		List<SkuDto> skuDtoList = new ArrayList<>();
-		for (SkuEntity sku: skus) {
-			SkuDto skuDtoResponse = mapper.map(sku, SkuDto.class);
-			skuDtoList.add(skuDtoResponse);
+		List<SkuDto> skus = this.skuRepository.findByProductId(id).stream().map(s -> mapper.map(s, SkuDto.class))
+				.collect(Collectors.toList());
+
+		if (!skus.isEmpty()) {
+			for (SkuDto sku: skus) {
+				List<MediaDto> medias = this.mediaRepository.findBySkuId(sku.getId())
+						.stream().map(m -> mapper.map(m, MediaDto.class))
+						.collect(Collectors.toList());
+				for (MediaDto media: medias) {
+					sku.getMedias().add(media);
+				}
+				productWithSkusDtoResponse.getSkus().add(sku);
+			}
 		}
 
-		productDtoResponse.setSkus(skuDtoList);
-
-		return productDtoResponse;
+		return productWithSkusDtoResponse;
 	}
 
 	@Override
 	public void update(Long id, ProductUpdateFormDto body) {
 		Optional<ProductEntity> product = this.productRepository.findById(id);
 		if (!product.isPresent()) {
-			throw new NotFoundAttributeException("Product not found");
+			throw new NotFoundAttributeException("Product " + id + " not found");
 		}
 
 		product.get().setName(body.getName());
@@ -102,6 +109,12 @@ public class ProductServiceImpl implements ProductService {
 		product.get().setMaterial(body.getMaterial());
 		product.get().setActive(body.getActive());
 
+		Optional<CategoryEntity> category = this.categoryRepository.findById(body.getCategoryId());
+		if(!category.isPresent()) {
+			throw new InvalidAttributeException("Category " + body.getCategoryId() + " not found");
+		}
+		product.get().setCategory(category.get());
+
 		this.productRepository.save(product.get());
 	}
 
@@ -109,7 +122,7 @@ public class ProductServiceImpl implements ProductService {
 	public void delete(Long id) {
 		Optional<ProductEntity> product = this.productRepository.findById(id);
 		if (!product.isPresent()) {
-			throw new NotFoundAttributeException("Product not found");
+			throw new NotFoundAttributeException("Product " + id + " not found");
 		}
 
 		this.productRepository.deleteById(id);

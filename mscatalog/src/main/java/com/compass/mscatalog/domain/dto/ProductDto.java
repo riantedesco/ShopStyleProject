@@ -34,6 +34,4 @@ public class ProductDto {
     @ApiModelProperty(value = "Status (ativo ou inativo)")
     private Boolean active;
 
-    @ApiModelProperty(value = "Skus")
-    private List<SkuDto> skus;
 }

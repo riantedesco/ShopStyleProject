@@ -40,10 +40,10 @@ public class CategoryServiceImpl implements CategoryService {
 			category.setId(null);
 			Optional<CategoryEntity> parent = this.categoryRepository.findById(body.getParentId());
 			if(!parent.isPresent()) {
-				throw new InvalidAttributeException("Parent not found");
+				throw new InvalidAttributeException("Parent " + body.getParentId() + " not found");
 			}
 			if(parent.get().getActive().equals(false)) {
-				throw new InvalidAttributeException("Parent is inactive");
+				throw new InvalidAttributeException("Parent " + body.getParentId() + " is inactive");
 			}
 			category.setParent(parent.get());
 		}
@@ -53,34 +53,23 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public List<CategoryDto> list() {
-		List<CategoryDto> categoriesDto = this.categoryRepository.findAll().stream().map(c -> mapper.map(c, CategoryDto.class))
+		List<CategoryDto> categories = this.categoryRepository.findAll()
+				.stream().map(c -> mapper.map(c, CategoryDto.class))
 				.collect(Collectors.toList());
-		List<CategoryDto> categoriesResponse = new ArrayList<>();
-		for (CategoryDto categoryDto: categoriesDto) {
-				Optional<CategoryEntity> category = this.categoryRepository.findById(categoryDto.getId());
-//			if (category.get().getParent() == null) {
-				List<CategoryDto> children = this.categoryRepository.findByParentId(category.get().getId()).stream().map(c -> mapper.map(c, CategoryDto.class))
-						.collect(Collectors.toList());
-				categoryDto.setChildren(children);
-//			}
-			if (category.get().getParent() == null) {
-				categoriesResponse.add(categoryDto);
-			}
-
-		}
-		return categoriesResponse;
+		return categories;
 	}
 
 	@Override
 	public CategoryWithProductsDto find(Long id) {
 		Optional<CategoryEntity> category = this.categoryRepository.findById(id);
 		if (!category.isPresent()) {
-			throw new NotFoundAttributeException("Category not found");
+			throw new NotFoundAttributeException("Category " + id + " not found");
 		}
 
 		CategoryWithProductsDto categoryWithProductsDtoResponse = mapper.map(category.get(), CategoryWithProductsDto.class);
 
-		List<ProductDto> products = this.productRepository.findByCategoryId(id).stream().map(p -> mapper.map(p, ProductDto.class))
+		List<ProductDto> products = this.productRepository.findByCategoryId(id)
+				.stream().map(p -> mapper.map(p, ProductDto.class))
 				.collect(Collectors.toList());
 		if (!products.isEmpty()) {
 			categoryWithProductsDtoResponse.setProducts(products);
@@ -93,7 +82,7 @@ public class CategoryServiceImpl implements CategoryService {
 	public void update(Long id, CategoryFormDto body) {
 		Optional<CategoryEntity> category = this.categoryRepository.findById(id);
 		if (!category.isPresent()) {
-			throw new NotFoundAttributeException("Category not found");
+			throw new NotFoundAttributeException("Category " + id + " not found");
 		}
 
 		category.get().setName(body.getName());
@@ -102,10 +91,10 @@ public class CategoryServiceImpl implements CategoryService {
 		if (body.getParentId() != null) {
 			Optional<CategoryEntity> parent = this.categoryRepository.findById(body.getParentId());
 			if (!parent.isPresent()) {
-				throw new InvalidAttributeException("Parent not found");
+				throw new InvalidAttributeException("Parent " + body.getParentId() + " not found");
 			}
 			if (parent.get().getActive().equals(false)) {
-				throw new InvalidAttributeException("Parent is inactive");
+				throw new InvalidAttributeException("Parent " + body.getParentId() + " is inactive");
 			}
 			category.get().setParent(parent.get());
 		}
@@ -117,7 +106,7 @@ public class CategoryServiceImpl implements CategoryService {
 	public void delete(Long id) {
 		Optional<CategoryEntity> category = this.categoryRepository.findById(id);
 		if (!category.isPresent()) {
-			throw new NotFoundAttributeException("Category not found");
+			throw new NotFoundAttributeException("Category " + id + " not found");
 		}
 
 		this.categoryRepository.deleteById(id);

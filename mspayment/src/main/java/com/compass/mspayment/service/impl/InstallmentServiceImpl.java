@@ -32,17 +32,15 @@ public class InstallmentServiceImpl implements InstallmentService {
 		mapper.getConfiguration().setAmbiguityIgnored(true);
 		InstallmentEntity installment = mapper.map(body, InstallmentEntity.class);
 
-		if(body.getPaymentId() != null) {
-			installment.setId(null);
-			Optional<PaymentEntity> payment = this.paymentRepository.findById(body.getPaymentId());
-			if(!payment.isPresent()) {
-				throw new InvalidAttributeException("Payment " + body.getPaymentId() + " not found");
-			}
-			if(payment.get().getExistsInstallments().equals(false)) {
-				throw new InvalidAttributeException("Payment doesn't have installments");
-			}
-			installment.setPayment(payment.get());
+		installment.setId(null);
+		Optional<PaymentEntity> payment = this.paymentRepository.findById(body.getPaymentId());
+		if(!payment.isPresent()) {
+			throw new InvalidAttributeException("Payment " + body.getPaymentId() + " not found");
 		}
+		if(payment.get().getExistsInstallments().equals(false)) {
+			throw new InvalidAttributeException("Payment doesn't have installments");
+		}
+		installment.setPayment(payment.get());
 
 		this.installmentRepository.save(installment);
 	}
@@ -56,6 +54,12 @@ public class InstallmentServiceImpl implements InstallmentService {
 
 		installment.get().setAmount(body.getAmount());
 		installment.get().setBrand(body.getBrand());
+
+		Optional<PaymentEntity> payment = this.paymentRepository.findById(body.getPaymentId());
+		if (!payment.isPresent()) {
+			throw new InvalidAttributeException("Payment " + body.getPaymentId() + " not found");
+		}
+		installment.get().setPayment(payment.get());
 
 		this.installmentRepository.save(installment.get());
 	}

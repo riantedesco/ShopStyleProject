@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -81,17 +82,17 @@ public class ProductServiceImpl implements ProductService {
 		List<SkuDto> skus = this.skuRepository.findByProductId(id).stream().map(s -> mapper.map(s, SkuDto.class))
 				.collect(Collectors.toList());
 
+		List<SkuDto> skuDtos = new ArrayList<>();
 		if (!skus.isEmpty()) {
 			for (SkuDto sku: skus) {
 				List<MediaDto> medias = this.mediaRepository.findBySkuId(sku.getId())
 						.stream().map(m -> mapper.map(m, MediaDto.class))
 						.collect(Collectors.toList());
-				for (MediaDto media: medias) {
-					sku.getMedias().add(media);
-				}
-				productWithSkusDtoResponse.getSkus().add(sku);
+				sku.setMedias(medias);
+				skuDtos.add(sku);
 			}
 		}
+		productWithSkusDtoResponse.setSkus(skuDtos);
 
 		return productWithSkusDtoResponse;
 	}
@@ -112,6 +113,9 @@ public class ProductServiceImpl implements ProductService {
 		Optional<CategoryEntity> category = this.categoryRepository.findById(body.getCategoryId());
 		if(!category.isPresent()) {
 			throw new InvalidAttributeException("Category " + body.getCategoryId() + " not found");
+		}
+		if(category.get().getActive().equals(false)) {
+			throw new InvalidAttributeException("Category " + body.getCategoryId() + " is inactive");
 		}
 		product.get().setCategory(category.get());
 

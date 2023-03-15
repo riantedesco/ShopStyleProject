@@ -51,7 +51,6 @@ public class SkuServiceImpl implements SkuService {
 		this.skuRepository.save(sku);
 
 		for (String image: body.getImages()) {
-			sku.setId(null);
 			MediaEntity media = new MediaEntity();
 			media.setImageUrl(image);
 			media.setSku(sku);

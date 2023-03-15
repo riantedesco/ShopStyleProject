@@ -66,7 +66,8 @@ public class CategoryServiceImpl implements CategoryService {
 			throw new NotFoundAttributeException("Category " + id + " not found");
 		}
 
-		CategoryWithProductsDto categoryWithProductsDtoResponse = mapper.map(category.get(), CategoryWithProductsDto.class);
+		CategoryWithProductsDto categoryWithProductsDtoResponse = mapper.map(category.get(),
+				CategoryWithProductsDto.class);
 
 		List<ProductDto> products = this.productRepository.findByCategoryId(id)
 				.stream().map(p -> mapper.map(p, ProductDto.class))

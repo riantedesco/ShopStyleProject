@@ -826,7 +826,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:7072/v1/skus/1",
+									"raw": "http://localhost:7072/v1/skus/4",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -835,7 +835,7 @@
 									"path": [
 										"v1",
 										"skus",
-										"1"
+										"4"
 									]
 								}
 							},
@@ -858,7 +858,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"credit card\",\r\n    \"installments\": true,\r\n    \"active\": true\r\n}\r\n",
+									"raw": "{\r\n    \"type\": \"credit card\",\r\n    \"existsInstallments\": true,\r\n    \"active\": true\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -933,7 +933,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"credit card\",\r\n    \"installments\": true,\r\n    \"active\": true\r\n}\r\n",
+									"raw": "{\r\n    \"type\": \"credit card\",\r\n    \"existsInstallments\": true,\r\n    \"active\": true\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1005,7 +1005,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"amount\": 5,\r\n    \"brand\": \"mastercard\",\r\n    \"paymentId\": 1\r\n}",
+									"raw": "{\r\n    \"amount\": 5,\r\n    \"brand\": \"mastercard\",\r\n    \"paymentId\": 3\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"

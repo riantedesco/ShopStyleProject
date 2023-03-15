@@ -38,7 +38,7 @@ public class InstallmentServiceImpl implements InstallmentService {
 			throw new InvalidAttributeException("Payment " + body.getPaymentId() + " not found");
 		}
 		if(payment.get().getExistsInstallments().equals(false)) {
-			throw new InvalidAttributeException("Payment doesn't have installments");
+			throw new InvalidAttributeException("Payment " + body.getPaymentId() + " doesn't have installments");
 		}
 		installment.setPayment(payment.get());
 
@@ -58,6 +58,9 @@ public class InstallmentServiceImpl implements InstallmentService {
 		Optional<PaymentEntity> payment = this.paymentRepository.findById(body.getPaymentId());
 		if (!payment.isPresent()) {
 			throw new InvalidAttributeException("Payment " + body.getPaymentId() + " not found");
+		}
+		if(payment.get().getExistsInstallments().equals(false)) {
+			throw new InvalidAttributeException("Payment " + body.getPaymentId() + " doesn't have installments");
 		}
 		installment.get().setPayment(payment.get());
 

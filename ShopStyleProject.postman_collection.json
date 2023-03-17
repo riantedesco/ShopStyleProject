@@ -58,7 +58,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"firstName\": \"Maria\",\r\n    \"lastName\": \"Oliveira\",\r\n    \"sex\": \"FEMININO\",\r\n    \"cpf\": \"036.839.560-03\",\r\n    \"birthdate\": \"2002-03-30\",\r\n    \"email\": \"maria1@email.com\",\r\n    \"password\": \"12345678\",\r\n    \"active\": true\r\n}",
+									"raw": "{\r\n    \"firstName\": \"Maria\",\r\n    \"lastName\": \"Oliveira\",\r\n    \"sex\": \"Feminino\",\r\n    \"cpf\": \"036.839.560-03\",\r\n    \"birthdate\": \"2002-03-30\",\r\n    \"email\": \"maria1@email.com\",\r\n    \"password\": \"12345678\",\r\n    \"active\": true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -154,7 +154,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"firstName\": \"Maria\",\r\n    \"lastName\": \"Oliveira das Dores da Silva\",\r\n    \"sex\": \"FEMININO\",\r\n    \"cpf\": \"036.839.560-03\",\r\n    \"birthdate\": \"2002-03-30\",\r\n    \"email\": \"maria@email.com\",\r\n    \"password\": \"123456789\",\r\n    \"active\": false\r\n}",
+									"raw": "{\r\n    \"firstName\": \"Maria\",\r\n    \"lastName\": \"Oliveira das Dores da Silva\",\r\n    \"sex\": \"Feminino\",\r\n    \"cpf\": \"036.839.560-03\",\r\n    \"birthdate\": \"2002-03-30\",\r\n    \"email\": \"maria@email.com\",\r\n    \"password\": \"123456789\",\r\n    \"active\": false\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"

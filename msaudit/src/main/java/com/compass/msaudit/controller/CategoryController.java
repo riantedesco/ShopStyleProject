@@ -1,9 +1,6 @@
 package com.compass.msaudit.controller;
 
-import com.compass.msaudit.domain.dto.CategoryDto;
-import com.compass.msaudit.domain.dto.CategoryWithProductsDto;
-import com.compass.msaudit.domain.dto.form.CategoryFormDto;
-import com.compass.msaudit.service.CategoryService;
+import com.compass.msaudit.service.OrderService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +17,7 @@ import java.util.List;
 public class CategoryController {
 
 	@Autowired
-	private CategoryService categoryService;
+	private OrderService orderService;
 
 	@ApiOperation(value = "Cadastra uma categoria")
 	@ApiResponses(value = {
@@ -29,7 +26,7 @@ public class CategoryController {
 	@PostMapping(consumes = "application/json", produces = "application/json")
 	@Transactional
 	public ResponseEntity<?> save(@RequestBody @Valid CategoryFormDto body) {
-		this.categoryService.save(body);
+		this.orderService.save(body);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
@@ -38,7 +35,7 @@ public class CategoryController {
 			@ApiResponse(code = 200, message = "Retorna as categorias cadastradas")})
 	@GetMapping(produces = "application/json")
 	public ResponseEntity<List<CategoryDto>> list() {
-		return ResponseEntity.ok(this.categoryService.list());
+		return ResponseEntity.ok(this.orderService.list());
 	}
 
 	@ApiOperation(value = "Busca uma categoria pelo id")
@@ -47,7 +44,7 @@ public class CategoryController {
 			@ApiResponse(code = 404, message = "Categoria não encontrada")})
 	@GetMapping(value = "/{id}/products", produces = "application/json")
 	public ResponseEntity<CategoryWithProductsDto> find(@ApiParam(value = "Id da categoria", required = true, example = "1") @PathVariable Long id) {
-		return ResponseEntity.ok(this.categoryService.find(id));
+		return ResponseEntity.ok(this.orderService.find(id));
 	}
 
 	@ApiOperation(value = "Atualiza uma categoria pelo id")
@@ -58,7 +55,7 @@ public class CategoryController {
 	@PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
 	@Transactional
 	public ResponseEntity<?> update(@ApiParam(value = "Id da categoria", required = true, example = "1") @PathVariable Long id, @RequestBody @Valid CategoryFormDto body) {
-		this.categoryService.update(id, body);
+		this.orderService.update(id, body);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 
@@ -69,7 +66,7 @@ public class CategoryController {
 	@DeleteMapping(value = "/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@ApiParam(value = "Id da categoria", required = true, example = "1") @PathVariable Long id) {
-		this.categoryService.delete(id);
+		this.orderService.delete(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 }

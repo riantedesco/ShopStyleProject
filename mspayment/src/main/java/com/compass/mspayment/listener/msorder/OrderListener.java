@@ -2,8 +2,6 @@ package com.compass.mspayment.listener.msorder;
 
 import com.compass.mspayment.domain.InstallmentEntity;
 import com.compass.mspayment.domain.PaymentEntity;
-import com.compass.mspayment.domain.dto.InstallmentDto;
-import com.compass.mspayment.domain.dto.PaymentDto;
 import com.compass.mspayment.listener.msorder.dto.OrderListenerDto;
 import com.compass.mspayment.publisher.order.OrderPublisher;
 import com.compass.mspayment.repository.InstallmentRepository;
@@ -17,7 +15,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static com.compass.mspayment.util.constants.StatusOrderPublisherOption.*;
 
@@ -37,7 +34,7 @@ public class OrderListener {
     @Autowired
     private InstallmentRepository installmentRepository;
 
-    @RabbitListener(queues = RabbitMQConstants.ORDER_NOTIFICATION_QUEUE_NAME)
+    @RabbitListener(queues = RabbitMQConstants.ORDER_TO_PAYMENT_QUEUE_NAME)
     public void listenOrder(OrderListenerDto orderListenerDto) {
         log.info("OrderListener.listen - {}", orderListenerDto);
 

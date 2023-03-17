@@ -24,7 +24,7 @@ public class OrderListener {
     @Autowired
     private SkuRepository skuRepository;
 
-    @RabbitListener(queues = RabbitMQConstants.ORDER_NOTIFICATION_QUEUE_NAME)
+    @RabbitListener(queues = RabbitMQConstants.ORDER_TO_CATALOG_QUEUE_NAME)
     public void listenOrder(OrderListenerDto orderListenerDto) {
         log.info("OrderListener.listen - {}", orderListenerDto);
 

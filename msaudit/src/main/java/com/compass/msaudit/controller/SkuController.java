@@ -1,8 +1,5 @@
 package com.compass.msaudit.controller;
 
-import com.compass.msaudit.domain.dto.form.SkuFormDto;
-import com.compass.msaudit.domain.dto.form.SkuUpdateFormDto;
-import com.compass.msaudit.service.SkuService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -15,12 +15,12 @@ public class RabbitMQConfig {
 
     @Bean
     public Queue queueOrderPublisher() {
-        return new Queue(PAYMENT_NOTIFICATION_QUEUE_NAME, true);
+        return new Queue(PAYMENT_TO_ORDER_QUEUE_NAME, true);
     }
 
     @Bean
     public Queue queueOrderListener() {
-        return new Queue(ORDER_NOTIFICATION_QUEUE_NAME, true);
+        return new Queue(ORDER_TO_PAYMENT_QUEUE_NAME, true);
     }
 
     @Bean
@@ -30,12 +30,12 @@ public class RabbitMQConfig {
 
     @Bean
     Binding bindingOrderPublisher() {
-        return BindingBuilder.bind(queueOrderPublisher()).to(exchange()).with(PAYMENT_NOTIFICATION_ROUTINGKEY_NAME);
+        return BindingBuilder.bind(queueOrderPublisher()).to(exchange()).with(PAYMENT_TO_ORDER_ROUTINGKEY_NAME);
     }
 
     @Bean
     Binding bindingOrderListener() {
-        return BindingBuilder.bind(queueOrderListener()).to(exchange()).with(ORDER_NOTIFICATION_ROUTINGKEY_NAME);
+        return BindingBuilder.bind(queueOrderListener()).to(exchange()).with(ORDER_TO_PAYMENT_ROUTINGKEY_NAME);
     }
 
     @Bean

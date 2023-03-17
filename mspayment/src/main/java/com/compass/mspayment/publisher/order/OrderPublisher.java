@@ -17,7 +17,7 @@ public class OrderPublisher {
 
     public void publishOrder(Long id, StatusOrderPublisherOption status) {
         OrderPublisherDto orderPublisherDto = new OrderPublisherDto(id, status);
-        rabbitTemplate.convertAndSend(RabbitMQConstants.EXCHANGE_NAME, RabbitMQConstants.PAYMENT_NOTIFICATION_ROUTINGKEY_NAME, orderPublisherDto);
+        rabbitTemplate.convertAndSend(RabbitMQConstants.EXCHANGE_NAME, RabbitMQConstants.PAYMENT_TO_ORDER_ROUTINGKEY_NAME, orderPublisherDto);
         log.info("OrderPublisher.publish - {}", orderPublisherDto);
     }
 }

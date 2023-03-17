@@ -15,7 +15,7 @@ public class RabbitMQConfig {
 
     @Bean
     public Queue queueOrderListener() {
-        return new Queue(ORDER_NOTIFICATION_QUEUE_NAME, true);
+        return new Queue(ORDER_TO_CATALOG_QUEUE_NAME, true);
     }
 
     @Bean
@@ -25,7 +25,7 @@ public class RabbitMQConfig {
 
     @Bean
     Binding bindingOrderListener() {
-        return BindingBuilder.bind(queueOrderListener()).to(exchange()).with(ORDER_NOTIFICATION_ROUTINGKEY_NAME);
+        return BindingBuilder.bind(queueOrderListener()).to(exchange()).with(ORDER_TO_CATALOG_ROUTINGKEY_NAME);
     }
 
     @Bean

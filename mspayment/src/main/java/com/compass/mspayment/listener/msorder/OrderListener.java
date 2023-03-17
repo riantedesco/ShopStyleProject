@@ -2,8 +2,9 @@ package com.compass.mspayment.listener.msorder;
 
 import com.compass.mspayment.domain.InstallmentEntity;
 import com.compass.mspayment.domain.PaymentEntity;
+import com.compass.mspayment.exception.InvalidAttributeException;
 import com.compass.mspayment.listener.msorder.dto.OrderListenerDto;
-import com.compass.mspayment.publisher.order.OrderPublisher;
+import com.compass.mspayment.publisher.msorder.OrderPublisher;
 import com.compass.mspayment.repository.InstallmentRepository;
 import com.compass.mspayment.repository.PaymentRepository;
 import com.compass.mspayment.util.constants.RabbitMQConstants;
@@ -39,6 +40,9 @@ public class OrderListener {
         log.info("OrderListener.listen - {}", orderListenerDto);
 
         Optional<PaymentEntity> payment = this.paymentRepository.findById(orderListenerDto.getPayment().getId());
+        if(!payment.isPresent()) {
+            throw new InvalidAttributeException("Payment " + orderListenerDto.getPayment().getId() + " not found");
+        }
 
         List<InstallmentEntity> installments = this.installmentRepository.findByPaymentId(orderListenerDto.getPayment().getId());
         int amountNotExceeded = 0;

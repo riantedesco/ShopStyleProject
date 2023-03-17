@@ -3,7 +3,7 @@ package com.compass.mscatalog.listener.msorder;
 import com.compass.mscatalog.domain.SkuEntity;
 import com.compass.mscatalog.exception.InvalidAttributeException;
 import com.compass.mscatalog.listener.msorder.dto.OrderListenerDto;
-import com.compass.mscatalog.listener.msorder.dto.SkusOrderListenerDto;
+import com.compass.mscatalog.listener.msorder.dto.SkuOrderListenerDto;
 import com.compass.mscatalog.repository.SkuRepository;
 import com.compass.mscatalog.utils.constants.RabbitMQConstants;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +28,7 @@ public class OrderListener {
     public void listenOrder(OrderListenerDto orderListenerDto) {
         log.info("OrderListener.listen - {}", orderListenerDto);
 
-        for (SkusOrderListenerDto skus: orderListenerDto.getSkus()) {
+        for (SkuOrderListenerDto skus: orderListenerDto.getSkus()) {
             Optional<SkuEntity> sku = this.skuRepository.findById(skus.getId());
             if(!sku.isPresent()) {
                 throw new InvalidAttributeException("Sku " + skus.getId() + " not found");

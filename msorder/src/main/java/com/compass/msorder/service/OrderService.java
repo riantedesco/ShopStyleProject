@@ -14,6 +14,6 @@ public interface OrderService {
 
     List<OrderDto> list(String startDate, String endDate, StatusOrderOption status);
 
-    List<OrderDto> listByCustomer(Long customerId);
+    List<OrderDto> listByCustomerId(Long customerId, String startDate, String endDate, StatusOrderOption status);
 
 }

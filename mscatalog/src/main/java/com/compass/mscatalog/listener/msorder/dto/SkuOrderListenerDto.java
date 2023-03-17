@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @ApiModel(value = "Chegada dos dados do msorder - sku")
-public class SkusOrderListenerDto {
+public class SkuOrderListenerDto {
 
     @ApiModelProperty(value = "Id da sku")
     private Long id;

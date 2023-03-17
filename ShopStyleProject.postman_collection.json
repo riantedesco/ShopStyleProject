@@ -1147,14 +1147,7 @@
 							},
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "",
-										"value": "",
-										"type": "default",
-										"disabled": true
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
 									"raw": "",
@@ -1165,7 +1158,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:7074/v1/orders",
+									"raw": "http://localhost:7074/v1/orders?startDate=2021-03-15 00:01&endDate=2024-03-16 00:01&status=PROCESSING_PAYMENT",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1174,13 +1167,27 @@
 									"path": [
 										"v1",
 										"orders"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2021-03-15 00:01"
+										},
+										{
+											"key": "endDate",
+											"value": "2024-03-16 00:01"
+										},
+										{
+											"key": "status",
+											"value": "PROCESSING_PAYMENT"
+										}
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "/v1/orders/customers/:id",
+							"name": "/v1/orders/customers/:customerId",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1204,7 +1211,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:7074/v1/orders/customers/1",
+									"raw": "http://localhost:7074/v1/orders/customers/1?startDate=2021-03-15 00:01&endDate=2024-03-16 00:01&status=PROCESSING_PAYMENT",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1215,6 +1222,20 @@
 										"orders",
 										"customers",
 										"1"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2021-03-15 00:01"
+										},
+										{
+											"key": "endDate",
+											"value": "2024-03-16 00:01"
+										},
+										{
+											"key": "status",
+											"value": "PROCESSING_PAYMENT"
+										}
 									]
 								}
 							},

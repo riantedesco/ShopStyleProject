@@ -1,4 +1,4 @@
-package com.compass.mspayment.publisher.order.dto;
+package com.compass.mspayment.publisher.msorder.dto;
 
 import com.compass.mspayment.util.constants.StatusOrderPublisherOption;
 import io.swagger.annotations.ApiModel;
@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class OrderPublisherDto {
 
     @ApiModelProperty(value = "Id do pedido")
-    private Long orderId;
+    private String orderId;
 
     @ApiModelProperty(value = "Status do pagamento")
     private StatusOrderPublisherOption status;

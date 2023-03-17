@@ -1,4 +1,4 @@
-package com.compass.mscatalog.listener.msorder.dto;
+package com.compass.msorder.publisher.mspayment.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -7,19 +7,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ApiModel(value = "Chegada dos dados do msorder - pedido")
-public class OrderListenerDto {
+@ApiModel(value = "Envio dos dados para o mspayment - pedido")
+public class PaymentPublisherDto {
 
     @ApiModelProperty(value = "Id do pedido")
     private String orderId;
 
-    @ApiModelProperty(value = "Skus")
-    private List<SkuOrderListenerDto> skus;
+    @ApiModelProperty(value = "Pagamento")
+    private PaymentPaymentPublisherDto payment;
 
 }

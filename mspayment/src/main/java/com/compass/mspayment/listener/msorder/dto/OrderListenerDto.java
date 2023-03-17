@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class OrderListenerDto {
 
     @ApiModelProperty(value = "Id do pedido")
-    private Long orderId;
+    private String orderId;
 
     @ApiModelProperty(value = "Pagamento")
     private PaymentOrderListenerDto payment;

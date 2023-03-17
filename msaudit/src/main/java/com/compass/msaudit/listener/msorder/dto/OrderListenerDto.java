@@ -1,4 +1,4 @@
-package com.compass.msaudit.domain.dto;
+package com.compass.msaudit.listener.msorder.dto;
 
 import com.compass.msaudit.domain.dojo.Cart;
 import com.compass.msaudit.domain.dojo.Customer;
@@ -11,7 +11,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,11 +18,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ApiModel(value = "Retorno dos dados do pedido")
-public class OrderDto {
+@ApiModel(value = "Chegada dos dados do msorder - pedido")
+public class OrderListenerDto {
 
-    @ApiModelProperty(value = "Id")
-    private Long id;
+    @ApiModelProperty(value = "Id do pedido")
+    private String orderId;
 
     @ApiModelProperty(value = "Cliente")
     private Customer customer;
@@ -42,5 +41,6 @@ public class OrderDto {
 
     @ApiModelProperty(value = "Total")
     private Double total;
+
 
 }

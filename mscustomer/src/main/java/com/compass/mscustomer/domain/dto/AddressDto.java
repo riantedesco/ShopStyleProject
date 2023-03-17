@@ -1,14 +1,11 @@
 package com.compass.mscustomer.domain.dto;
 
-import com.compass.mscustomer.util.constants.StateAddressOption;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor

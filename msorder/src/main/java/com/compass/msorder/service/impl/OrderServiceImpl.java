@@ -3,7 +3,6 @@ package com.compass.msorder.service.impl;
 import com.compass.msorder.domain.OrderDocument;
 import com.compass.msorder.domain.dto.OrderDto;
 import com.compass.msorder.domain.dto.form.OrderFormDto;
-import com.compass.msorder.publisher.msaudit.AuditPublisher;
 import com.compass.msorder.publisher.mspayment.PaymentPublisher;
 import com.compass.msorder.repository.OrderRepository;
 import com.compass.msorder.service.OrderService;
@@ -12,13 +11,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static com.compass.msorder.utils.constants.StatusOrderOption.PROCESSING_PAYMENT;
 
 @Service
 public class OrderServiceImpl implements OrderService {

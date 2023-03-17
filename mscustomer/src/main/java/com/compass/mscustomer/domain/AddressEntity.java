@@ -1,6 +1,5 @@
 package com.compass.mscustomer.domain;
 
-import com.compass.mscustomer.util.constants.StateAddressOption;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

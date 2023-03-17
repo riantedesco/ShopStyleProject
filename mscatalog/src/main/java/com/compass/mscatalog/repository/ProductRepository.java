@@ -1,6 +1,5 @@
 package com.compass.mscatalog.repository;
 
-import com.compass.mscatalog.domain.CategoryEntity;
 import com.compass.mscatalog.domain.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

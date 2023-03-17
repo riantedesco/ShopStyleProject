@@ -1,5 +1,6 @@
-package com.compass.mscatalog.domain.dto;
+package com.compass.msaudit.domain.dto;
 
+import com.compass.msaudit.domain.dojo.Order;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -11,13 +12,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ApiModel(value = "Retorno dos dados da imagem")
-public class MediaDto {
+@ApiModel(value = "Retorno dos dados da auditoria")
+public class AuditDto {
 
     @ApiModelProperty(value = "Id")
-    private Long id;
+    private String id;
 
-    @ApiModelProperty(value = "Url")
-    private String imageUrl;
+    @ApiModelProperty(value = "Pedido")
+    private Order order;
 
 }

@@ -1,6 +1,5 @@
 package com.compass.msaudit.configuration.handler;
 
-import com.compass.msaudit.exception.InvalidAttributeException;
 import com.compass.msaudit.exception.NotFoundAttributeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,14 +11,6 @@ import java.util.Date;
 
 @org.springframework.web.bind.annotation.ControllerAdvice(basePackages = "com.compass.msaudit.controller")
 public class ControllerAdvice {
-
-    @ResponseBody
-    @ExceptionHandler(InvalidAttributeException.class)
-    public ResponseEntity<MessageExceptionHandler> invalidAttributeException(InvalidAttributeException invalidAttributeException) {
-        MessageExceptionHandler error = new MessageExceptionHandler(
-                new Date(), HttpStatus.BAD_REQUEST.value(), "There's data in the body that are not correct or not allowed");
-        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
-    }
 
     @ResponseBody
     @ExceptionHandler(NotFoundAttributeException.class)

@@ -1,11 +1,11 @@
 package com.compass.mscatalog.service.impl;
 
 import com.compass.mscatalog.domain.CategoryEntity;
-import com.compass.mscatalog.domain.MediaEntity;
 import com.compass.mscatalog.domain.ProductEntity;
-import com.compass.mscatalog.domain.SkuEntity;
-import com.compass.mscatalog.domain.dto.*;
-import com.compass.mscatalog.domain.dto.form.CategoryFormDto;
+import com.compass.mscatalog.domain.dto.MediaDto;
+import com.compass.mscatalog.domain.dto.ProductDto;
+import com.compass.mscatalog.domain.dto.ProductWithSkusDto;
+import com.compass.mscatalog.domain.dto.SkuDto;
 import com.compass.mscatalog.domain.dto.form.ProductFormDto;
 import com.compass.mscatalog.domain.dto.form.ProductUpdateFormDto;
 import com.compass.mscatalog.exception.InvalidAttributeException;
@@ -14,14 +14,12 @@ import com.compass.mscatalog.repository.CategoryRepository;
 import com.compass.mscatalog.repository.MediaRepository;
 import com.compass.mscatalog.repository.ProductRepository;
 import com.compass.mscatalog.repository.SkuRepository;
-import com.compass.mscatalog.service.CategoryService;
 import com.compass.mscatalog.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

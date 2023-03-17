@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class PaymentListenerDto {
 
     @ApiModelProperty(value = "Id do pedido")
-    private Long orderId;
+    private String orderId;
 
     @ApiModelProperty(value = "Status do pagamento")
     private StatusOrderOption status;

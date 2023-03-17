@@ -4,7 +4,6 @@ import com.compass.mscatalog.domain.MediaEntity;
 import com.compass.mscatalog.domain.ProductEntity;
 import com.compass.mscatalog.domain.SkuEntity;
 import com.compass.mscatalog.domain.dto.MediaDto;
-import com.compass.mscatalog.domain.dto.ProductDto;
 import com.compass.mscatalog.domain.dto.form.SkuFormDto;
 import com.compass.mscatalog.domain.dto.form.SkuUpdateFormDto;
 import com.compass.mscatalog.exception.InvalidAttributeException;

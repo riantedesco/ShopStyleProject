@@ -21,7 +21,7 @@ public class AddressEntity {
     private Long id;
 
     @Column(name = "state")
-    private StateAddressOption state;
+    private String state;
 
     @Column(name = "city")
     private String city;

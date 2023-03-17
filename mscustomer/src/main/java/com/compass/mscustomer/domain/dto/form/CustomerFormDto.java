@@ -1,6 +1,5 @@
 package com.compass.mscustomer.domain.dto.form;
 
-import com.compass.mscustomer.util.constants.SexCustomerOption;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -39,7 +38,7 @@ public class CustomerFormDto {
 
     @ApiModelProperty(value = "Sexo")
     @NotNull
-    private SexCustomerOption sex;
+    private String sex;
 
     @ApiModelProperty(value = "Data de nascimento")
     @NotNull

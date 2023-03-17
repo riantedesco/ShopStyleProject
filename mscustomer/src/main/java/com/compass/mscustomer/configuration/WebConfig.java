@@ -1,6 +1,5 @@
 package com.compass.mscustomer.configuration;
 
-import com.compass.mscustomer.util.converter.SexCustomerOptionConverter;
 import com.compass.mscustomer.util.converter.StateAddressOptionConverter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;

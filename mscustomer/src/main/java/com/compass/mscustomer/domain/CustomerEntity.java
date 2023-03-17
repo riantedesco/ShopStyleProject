@@ -1,7 +1,6 @@
 package com.compass.mscustomer.domain;
 
 import com.compass.mscustomer.security.PerfilEntity;
-import com.compass.mscustomer.util.constants.SexCustomerOption;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -37,7 +36,7 @@ public class CustomerEntity implements UserDetails {
     private String lastName;
 
     @Column(name = "sex")
-    private SexCustomerOption sex;
+    private String sex;
 
     @Column(name = "birthdate")
     private LocalDate birthdate;

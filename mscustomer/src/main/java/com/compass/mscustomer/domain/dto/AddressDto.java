@@ -21,7 +21,7 @@ public class AddressDto {
     private Long id;
 
     @ApiModelProperty(value = "Estado")
-    private StateAddressOption state;
+    private String state;
 
     @ApiModelProperty(value = "Cidade")
     private String city;

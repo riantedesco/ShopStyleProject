@@ -9,6 +9,7 @@ import com.compass.mscustomer.exception.NotFoundAttributeException;
 import com.compass.mscustomer.repository.AddressRepository;
 import com.compass.mscustomer.repository.CustomerRepository;
 import com.compass.mscustomer.service.AddressService;
+import com.compass.mscustomer.util.validation.Validation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,9 @@ public class AddressServiceImpl implements AddressService {
 	private CustomerRepository customerRepository;
 
 	@Autowired
+	private Validation validation;
+
+	@Autowired
 	private ModelMapper mapper;
 
 	@Override
@@ -39,6 +43,7 @@ public class AddressServiceImpl implements AddressService {
 		}
 		address.setCustomer(customer.get());
 
+		validation.validateAddress(address);
 		this.addressRepository.save(address);
 	}
 

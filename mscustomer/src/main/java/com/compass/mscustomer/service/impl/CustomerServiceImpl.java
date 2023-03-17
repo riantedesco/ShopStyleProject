@@ -11,6 +11,7 @@ import com.compass.mscustomer.exception.NotFoundAttributeException;
 import com.compass.mscustomer.repository.AddressRepository;
 import com.compass.mscustomer.repository.CustomerRepository;
 import com.compass.mscustomer.service.CustomerService;
+import com.compass.mscustomer.util.validation.Validation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,6 +32,9 @@ public class CustomerServiceImpl implements CustomerService {
 	private AddressRepository addressRepository;
 
 	@Autowired
+	private Validation validation;
+
+	@Autowired
 	private ModelMapper mapper;
 
 	@Override
@@ -44,6 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 
 		customer.setPassword(new BCryptPasswordEncoder().encode(body.getPassword()));
+		validation.validateCustomer(customer);
 		this.customerRepository.save(customer);
 	}
 

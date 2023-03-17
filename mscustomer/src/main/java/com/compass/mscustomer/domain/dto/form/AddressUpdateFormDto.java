@@ -19,7 +19,7 @@ public class AddressUpdateFormDto {
 
     @ApiModelProperty(value = "Estado")
     @NotNull
-    private StateAddressOption state;
+    private String state;
 
     @ApiModelProperty(value = "Cidade")
     @NotNull
